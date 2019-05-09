@@ -6,7 +6,7 @@ import math
 from time import time
 
 # Imports from directory
-import model_util
+from .filter import Filter
 
 
 # Recieves search terms to classify usefulness of pubmed documents from search results
@@ -18,17 +18,14 @@ def filter_results(search_terms):
 
 	start = time()
 
-	print('here 1')
 	# pandas dataframe of document info
 	doc_info = retrieve_doc_info(doc_ids)
 	print(search_terms, "Document Info", "(" + str(len(doc_info)) + " entries)", "Retrieved in", (time() - start) / 60, "min")
 
 	start = time()
-	model_data = ModelData('search_selection')
-	model_data.build_data(doc_info)
+	filt = Filter()
+	output = filt.filter(doc_info)
 	print("Data Converted in", (time() - start) / 60, "min")
-
-	output = model(model_data)
 
 	output_info = retrieve_doc_info(output['PMID'].tolist())
 
@@ -62,13 +59,11 @@ def retrieve_doc_info(ids):
 	# Can't query too much in a single query, so divides larger id lists into seperate queries
 	num_loops = int(math.ceil(len(ids) / 100))
 
-	print('here 2')
 	# Have to split requests larger than 100 documents to keep it within url size
 	ids = divide_list(ids, num_loops)
 
 	documents = []
 
-	print('here 3')
 	# Retrieves xml data from pubmed
 	for i in ids:
 		url = construct_url(i, 'document')
@@ -82,7 +77,6 @@ def retrieve_doc_info(ids):
 
 	info = pd.DataFrame()
 
-	print('here 4')
 	for document in documents:
 
 		doc_id = int(document.find('.//PMID').text)
@@ -129,7 +123,6 @@ def retrieve_doc_info(ids):
 		
 		info = info.append(new_row, ignore_index = True)
 
-	print('here 5')
 	info['PMID'] = info['PMID'].astype('int32')
 
 	return info.reset_index(drop = True)
