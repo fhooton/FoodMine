@@ -7,7 +7,6 @@ from time import time
 
 # Imports from directory
 import model_util
-from modeldata_util import ModelData
 
 
 # Recieves search terms to classify usefulness of pubmed documents from search results
@@ -136,6 +135,31 @@ def retrieve_doc_info(ids):
 	return info.reset_index(drop = True)
 
 
+def pubchem_synonym_info(chem_name):
+	url = construct_url(chem_name, 'synonym')
+	
+	with request.urlopen(url) as response:
+		xml = response.read()
+
+	root = root = etree.fromstring(xml)
+	compound_id = float(root.findall(".//{http://pubchem.ncbi.nlm.nih.gov/pug_rest}CID")[0].xpath('.//text()')[0])
+	compound_name = str(root.findall(".//{http://pubchem.ncbi.nlm.nih.gov/pug_rest}Synonym")[0].xpath('.//text()')[0])
+
+	return compound_id, compound_name
+
+
+def pubchem_SMILE(chem_id):
+	url = construct_url(chem_id, 'SMILE')
+
+	with request.urlopen(url) as response:
+		xml = response.read()
+
+	root = root = etree.fromstring(xml)
+	SMILE = root.findall(".//{http://pubchem.ncbi.nlm.nih.gov/pug_rest}CanonicalSMILES")[0].xpath('.//text()')[0]
+
+	return SMILE
+
+
 # Constructs appropriate url for pubmed api from search terms
 def construct_url(url_input, query_type, num_results = 1000000):
 	
@@ -164,6 +188,14 @@ def construct_url(url_input, query_type, num_results = 1000000):
 
 		url = base_url + doc_urls.lstrip(",") + '&retmode=xml'
 
+		return url
+
+	elif query_type == 'synonym':
+		url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/" + url_input + "/synonyms/XML"
+		return url
+
+	elif query_type == 'SMILE':
+		url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/" + url_input + "/property/CanonicalSMILES/XML"
 		return url
 
 
