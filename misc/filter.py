@@ -1,3 +1,6 @@
+# Author: Forrest Hooton
+
+
 import pandas as pd
 import numpy as np
 import pickle
@@ -12,26 +15,27 @@ from lxml import etree
 
 class Filter():
 
+	"""
+		A class that calculates features for pubmed entry filtration
+	"""
+
 
 	def __init__(self):
 
+		# Loads spacy language model
 		self.nlp = en_core_web_sm.load()
 
+		# Loads vocabulary from predefined dictionaries of words
 		dicts = pickle.load(open('data/dicts.pkl', 'rb'))
 
 		food_dict = list(set( dicts['food'] ))
 		chem_dict = list(set( dicts['chem'] ))
 		sci_dict = list(set( dicts['sci_name'] ))
 
+		# Sets a dictionary to capture broad, possibly relevant concepts
 		gen_dict = ['food', 'meat', 'vegetable', 'database']
-		#food_dict = ['garlic', 'tomato']
-		#chem_dict = ['pinoresinol', 'lariciresinol', 'isoflavones']
 
-		search_dict = ['garlic', 'allium sativum', 'a. sativum']
-		#search_dict = ['cocao', 'theobroma cacao', 't. cacao']
-		self.search_matcher = self.__matcher_from_list__(search_dict)
-
-		# Creates specialized matchers for food
+		# Creates specialized matchers for different dictionaries
 		self.gen_matcher = self.__matcher_from_list__(gen_dict)
 		self.food_matcher = self.__matcher_from_list__(food_dict)
 		self.chem_matcher = self.__matcher_from_list__(chem_dict)
@@ -39,16 +43,36 @@ class Filter():
 
 		self.eval_sci_matches = True
 
+		# Specifies measurement methods to search for and creates matchers for those methods
+		measurement_methods = ['spectrometry', 'chromatography', 'spectrophotometry']
+		self.measurement_matchers = {m : self.__matcher_from_list__([m]) for m in measurement_methods}
 
-	# Appends paper based on whether or not it fits some criteria defined in the ModelData class
+
 	def filter(self, data):
+		"""
+			Takes in search from PubMed with the specified features from pubmed_util and filters results based one
+			pre-specified criteria.
+
+			Parameters
+			-----------------
+			data : pd.DataFrame
+				search results data from PubMed
+
+
+			Returns
+			-----------------
+			selected_articles: pd.DataFrame
+				PubMed entries that met the specified criteria and were not filtered out.
+		"""
 
 		self.input_data = data
 
+		# Creates word counts for filtration
 		self.__build_features__()
 
 		selected_articles = pd.DataFrame()
 
+		# Iterates over each PubMed entry and filters out results that don't meed criteria
 		for PMID, row in self.data.iterrows():
 
 			if self.__eval_conditionals__(row):
@@ -60,26 +84,50 @@ class Filter():
 		return selected_articles
 
 
-	# The initial structure of data for the model
 	def __build_features__(self):
+		"""
+			Creates features. In this instance word count frequencies.
+
+			Parameters
+			-----------------
+			None
+
+
+			Returns
+			-----------------
+			None
+		"""
 		
 		self.data = pd.DataFrame()
 		
 		start = time()
-		
+		print('Creating features...')
+
+		# Builds features for each row of data
 		for idx, row in self.input_data.iterrows():
 
 			if not idx % 200:
 				print('# rows:', idx, round(time() - start) / 60, "min")
 
-			# Detects the presence of measurement methodology word in abstract
-			measurement_methods = ['spectrometry', 'chromatography', 'spectrophotometry']
-			measurement_detection = self.__detect_measurement_methodology__(row['abstract'], row['mesh_terms'], measurement_methods)
-
 			if row['abstract'] == None:
-				row['abstract'] = ''
+				abstract = ''
+			else:
+				abstract = row['abstract']
+			
+			mesh_terms = ' '.join(row['mesh_terms'])
 
-			pubmed_features = self.__get_pubmed_features__(row)
+			# Combine all info into a single string
+			text = ' '.join([abstract, mesh_terms])
+
+
+			# Returns 1 per method if the measurement method is in the abstract or mesh terms, and 0 otherwise
+			measurement_detection = {
+				method : self.__detect_word_presence__(text, matcher)
+				for method, matcher in self.measurement_matchers.items()
+			}
+
+			# Retrieves features from pubmed
+			pubmed_features = self.__get_pubmed_features__(text)
 
 			data_row = {
 				'PMID' : row['PMID']
@@ -88,9 +136,10 @@ class Filter():
 			data_row.update(pubmed_features)
 
 			# Add the existance of measurement methods as different features
-			for method in measurement_methods:
+			for method in self.measurement_matchers.keys():
 				data_row[method] = measurement_detection[method]
 
+			# Updates data with new information
 			self.data = self.data.append(data_row, ignore_index = True)
 
 		self.data['PMID'] = self.data['PMID'].astype('int32')
@@ -100,12 +149,12 @@ class Filter():
 		for col in self.data.columns:
 			self.data[col] = pd.to_numeric(self.data[col])
 
-		#dictionary_condition = '((row["gen_term_count"] > 0) | (row["food_term_count"] > 0) | (row["chem_term_count"] > 0))'
+		# Specifies criteria for filtration
 		dictionary_condition = '((int(row["gen_term_count"]) > 0) + (int(row["food_term_count"]) > 0) + (int(row["chem_term_count"]) > 0) + (int(row["sci_term_count"]) > 0) > 1)'
 		
 		# Dynamically builds the measurement conditions based on different measurement methods
 		measurement_condition = ''
-		for method in measurement_methods:
+		for method in self.measurement_matchers.keys():
 			
 			if measurement_condition == '':
 				measurement_condition += '((int(row["' + method + '"]) == 1)'
@@ -116,19 +165,27 @@ class Filter():
 
 		# Creates the logical pattern to be used as a filter function in the Model class
 		self.extract_pattern = {
-			#'(row["has_spectrometry"] == 1) | (row["has_chromatography"] == 1)' : 'True'
 			dictionary_condition + ' & ' +  measurement_condition : 'True'
 		}
 
 
-	# Retrieves features from pubmed document information
-	def __get_pubmed_features__(self, row):
+	def __get_pubmed_features__(self, text):
+		"""
+			Calculates count frequence features from PubMed entry abstract and mesh terms.
 
-		abstract = ' '.join(row['abstract'])
-		mesh_terms = ' '.join(row['mesh_terms'])
+			Parameters
+			-----------------
+			row : pd.Series
+				Single row containing information on PubMed entry
 
-		text = ' '.join([abstract, mesh_terms])
+
+			Returns
+			-----------------
+			pubmed_features : dict
+				Dictionary containing the count frequencies for general, food, scientific name, and chemical terms.
+		"""
 		
+		# Count the terms that occur in each dictionary
 		gen_term_count = self.__matches__(self.gen_matcher, text)
 		food_term_count = self.__matches__(self.food_matcher, text)
 		chem_term_count = self.__matches__(self.chem_matcher, text)
@@ -146,42 +203,24 @@ class Filter():
 		return pubmed_features
 
 
-	# Determines what measurement methodolgies are present in paper details
-	def __detect_measurement_methodology__(self, abstract, mesh_terms, measurement_methods):
-		
-		detection = {}
-
-		if abstract == None:
-			return {m : 0 for m in measurement_methods}
-		elif mesh_terms == None:
-			return {m : 0 for m in measurement_methods}
-
-		for method in measurement_methods:
-			
-			# Returns 1 if word in statement, 0 otherwise
-			detection[method] = self.__detect_word__(abstract, method)
-
-			# also checks the mesh terms if the measurement method doesn't occur in the abstract
-			if detection[method] == 0:
-				detection[method] = self.__detect_word__(mesh_terms, method)
-
-		return detection
-
-
 	# Determines if a word is present in paper abstract or mesh terms
-	def __detect_word__(self, text, word):
+	def __detect_word_presence__(self, text, matcher):
+		"""
+			Calculates count frequence features from PubMed entry abstract and mesh terms.
 
-		if isinstance(text, list):
-			text = " ".join(text)
+			Parameters
+			-----------------
+			row : pd.Series
+				Single row containing information on PubMed entry
 
-		matcher = Matcher(self.nlp.vocab)
 
-		pattern = [{'LOWER' : word}]
-		
-		# Adds the pattern to look for to the Matcher object
-		matcher.add(word, None, pattern)
+			Returns
+			-----------------
+			pubmed_features : dict
+				Dictionary containing the count frequencies for general, food, scientific name, and chemical terms.
+		"""
 
-		# Specifically determines whether or not there is a match
+		# Retrieves the matches from text
 		match = matcher(self.nlp(text))
 
 		if len(match) > 0:

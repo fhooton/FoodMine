@@ -1,3 +1,6 @@
+# Author: Forrest Hooton
+
+
 import urllib.request as request
 from lxml import etree
 import pandas as pd
@@ -9,9 +12,23 @@ from time import time
 from .filter import Filter
 
 
-# Recieves search terms to classify usefulness of pubmed documents from search results
 def filter_results(search_terms):
+	"""
+		Recieves search terms to classify usefulness of pubmed documents from search results.
 
+		Parameters
+		-----------------
+		search_terms : list
+			List of terms to include in PubMed query
+
+
+		Returns
+		-----------------
+		output_info: pd.DataFrame
+			PubMed entries that met the specified criteria with metadata attached
+	"""
+
+	# Retrieves doc_ids of search terms
 	doc_ids = search_pubmed(search_terms)
 
 	print('ids', len(doc_ids))
@@ -22,24 +39,38 @@ def filter_results(search_terms):
 	doc_info = retrieve_doc_info(doc_ids)
 	print(search_terms, "Document Info", "(" + str(len(doc_info)) + " entries)", "Retrieved in", (time() - start) / 60, "min")
 
+	# Filters out results deemed irrelevant
 	start = time()
 	filt = Filter()
 	output = filt.filter(doc_info)
 	print("Data Converted in", (time() - start) / 60, "min")
 
+	# Reincorporate metadata
 	output_info = retrieve_doc_info(output['PMID'].tolist())
-
-	#output_info.to_pickle('temp_sub_search.pkl')
-
-	#print(output_info['PMID'])
 
 	return output_info
 
-# Enters search terms into pubmed database to return document ID's
-def search_pubmed(search_terms):
 
+def search_pubmed(search_terms):
+	"""
+		Recieves search terms to classify usefulness of pubmed documents from search results.
+
+		Parameters
+		-----------------
+		search_terms : list
+			List of terms to include in PubMed query
+
+
+		Returns
+		-----------------
+		output_info: pd.DataFrame
+			PubMed entries that met the specified criteria with metadata attached
+	"""
+
+	# Gets url to retrieve information from search
 	url = construct_url(search_terms, 'search')
 
+	# Retrieves data from PubMed
 	with request.urlopen(url) as response:
 		xml = response.read()
 
@@ -54,8 +85,22 @@ def search_pubmed(search_terms):
 	return ids
 
 
-# Retrieves document (paper) info using pubmed paper ids
 def retrieve_doc_info(ids):
+	"""
+		Retrieves document (paper) info using pubmed paper ids.
+
+		Parameters
+		-----------------
+		ids : list
+			List of PubMed ids to retrieve PubMed entry information
+
+
+		Returns
+		-----------------
+		info: pd.DataFrame
+			PubMed ids with metadata attached
+	"""
+
 	# Can't query too much in a single query, so divides larger id lists into seperate queries
 	num_loops = int(math.ceil(len(ids) / 100))
 
@@ -129,6 +174,24 @@ def retrieve_doc_info(ids):
 
 
 def pubchem_synonym_info(chem_name):
+	"""
+		Retrieves compound id and first compound synonym name from PubChem based on a queried chemical.
+
+		Parameters
+		-----------------
+		chem_name : string
+			Name of chemical
+
+
+		Returns
+		-----------------
+		compound_id : int
+			PubChem ID of queried chemical
+
+		compound_name : string
+			First name of compound listed in PubChem synonyms list
+	"""
+
 	url = construct_url(chem_name, 'synonym')
 	
 	with request.urlopen(url) as response:
