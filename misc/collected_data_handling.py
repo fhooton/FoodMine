@@ -1,11 +1,108 @@
+# Author: Forrest Hooton
+
+
 import pandas as pd
 import numpy as np
 import re
 from unit_converter.converter import convert, converts
 
 
-# Extracts digits from start of string
+def build_data_dict(df):
+    """
+        Receives of DataFrame of compiled data and appropriately calculates/reformats data into final structure.
+
+        Parameters
+        -----------------
+        df : pd.DataFrame
+            Dataframe of paper chemicals and metadata. df must be standardized for project. See Data_Statistics for example.
+
+
+        Returns
+        -----------------
+        data_df : pd.DataFrame
+            Dataframe containing compounds and corresponding metadata
+    """
+    
+    data_dict = {}  # Dict that holds all foods and chemicals, and their calculations
+
+    df['chemical'] = df['chemical'].str.strip()
+    df['chemical'] = df['chemical'].apply(greek_letter_converter)
+    
+    # Iterate over each unique food, and each unique chemical per food to create food, chem dict
+    for food in df['food'].drop_duplicates().tolist():
+        
+        chem_dict = {}   # Holds chemical calculations per food
+        
+        # need to do one loop for things with a chem id
+        for chem_id in df[(df['food'] == food) & (df['chem_id'].notnull())].chem_id.drop_duplicates().tolist():
+
+            f_chem_df = df[(df['food'] == food) & (df['chem_id'] == chem_id)]   # Filters DataFrame for rows with specific food-chemical combination
+            
+            new_entry = __build_chem_subdict__(f_chem_df)  # Reformats and caluclates values from seperate resources as dict
+
+            chem_dict[new_entry['chemical']] = new_entry
+        
+        for chem in df[(df['food'] == food) & (df['chem_id'].isnull())].chemical.drop_duplicates().tolist():
+
+            f_chem_df = df[(df['food'] == food) & (df['chemical'] == chem)]   # Filters DataFrame for rows with specific food-chemical combination
+            
+            new_entry = __build_chem_subdict__(f_chem_df)  # Reformats and caluclates values from seperate resources as dict
+            
+            chem_dict[new_entry['chemical']] = new_entry
+
+        data_dict[food] = chem_dict
+    
+    data_df = dict_to_df(data_dict)
+
+    return data_df
+
+
+def dict_to_df(data_dict):
+    """
+        Converts a constructed data dictionary to a pandas dataframe
+
+        Parameters
+        -----------------
+        df : pd.DataFrame
+            Dataframe of paper chemicals and metadata. df must be standardized for project. See Data_Statistics for example.
+
+
+        Returns
+        -----------------
+        data_df : pd.DataFrame
+            Dataframe containing compounds and corresponding metadata gathered from inputs
+    """
+
+    df = pd.DataFrame()
+
+    # Creates dataframe for each food and compound
+    for food, food_dict in data_dict.items():
+        for chemical, chem_dict in food_dict.items():
+            
+            chem_dict['food'] = food
+            chem_dict['chemical'] = chemical
+
+            df = df.append(chem_dict, ignore_index = True)
+
+    return df
+
+
 def __extract_digits__(string):
+    """
+        Extracts digits from beginning of string up until first non-diget character
+
+        Parameters
+        -----------------
+        string : string
+            Measurement string contain some digits and units
+
+
+        Returns
+        -----------------
+        digits : int
+            Digits at start of string
+    """
+    
     i = 0
     
     while string[i].isdigit():
@@ -14,8 +111,24 @@ def __extract_digits__(string):
     return int(string[0:i])
 
 
-# recieves a unit in string form, even containing a number, and returns scales and units
 def __splice_unit__(unit):
+    """
+        Recieves a unit in string form, even containing a number, and returns scales and units.
+
+        Parameters
+        -----------------
+        unit : string
+            Units of measurement
+
+
+        Returns
+        -----------------
+        scale : int
+            The scale of units, i.e. 10 in 10mg
+
+        units : string
+            The units used for a measurement without scale, i.e. mg
+    """
     
     unit = unit.strip()
 
@@ -32,8 +145,25 @@ def __splice_unit__(unit):
 
 
 def __converter__(unit, target):
-    
-    # Package doesn't like u for nano
+    """
+        Converts entry units to target units using unit_converter package
+
+        Parameters
+        -----------------
+        unit : string
+            Origional unit of input
+
+        target : string
+            Target unit in conversion
+
+
+        Returns
+        -----------------
+        converted unit : float
+            Scale of conversion
+    """
+
+    # Package doesn't read u as nano
     if unit[0] == 'u':
         unit = 'µg'
 
@@ -45,10 +175,29 @@ def __converter__(unit, target):
     return float(converts(unit, target))
 
 
-
-# Handles unit conversions to specified quantity, and makes adjustments as necessary
 def __unit_handler__(value, unit, target_unit):
+    """
+        Handles unit conversions to specified quantity, and makes adjustments as necessary.
 
+        Parameters
+        -----------------
+        value : float
+            Value of measurement with associated unit
+
+        unit : string
+            Origional unit of input
+
+        target_unit : string
+            Target unit for conversion
+
+
+        Returns
+        -----------------
+        value_conversion : float
+            Converted value to value for target units
+    """
+
+    # Handles specific input of content ranges: "__ to __"
     if re.search(r'to', str(value)) is not None:
         value = np.mean([float(n) for n in value.split(' to ')])
 
@@ -59,11 +208,6 @@ def __unit_handler__(value, unit, target_unit):
 
     # Handle if unit is percentage
     if unit == '%':
-        target_denom_scale, target_denom_unit = __splice_unit__(target_unit.split('/')[1])
-        unit_conversion = __converter__(target_unit.split('/')[1], target_unit.split('/')[0])
-        converted_value = float(value) * target_denom_scale * unit_conversion / 100
-
-        #return converted_value
         return '% measurement'
 
     # Handle if unit is based on volume rather than mass
@@ -97,7 +241,7 @@ def __unit_handler__(value, unit, target_unit):
             scale_conversion = num_scale / target_num_scal
 
 
-        # Recieves numerical scales from converter. For __converter__('mg', 'g'), returns 1000
+        # Receives numerical scales from converter. For __converter__('mg', 'g'), returns 1000
         num_unit_conversion = __converter__(num_unit, target_num_unit)
         denom_unit_conversion = __converter__(denom_unit, target_denom_unit)
 
@@ -108,8 +252,21 @@ def __unit_handler__(value, unit, target_unit):
         return value_conversion
     
 
-# Recieves DataFrame with at least a numerical 'amount' column and calculates summary values to return
 def __quant_handler__(df):
+    """
+        Receives DataFrame for a single chemical with at least a numerical 'amount' column and calculates summary values to return.
+
+        Parameters
+        -----------------
+        df : pd.DataFrame
+            Dataframe of specific chemical, quantification amount, and associated metadata from papers
+
+
+        Returns
+        -----------------
+        quant_pack : dict
+            Dictionary of select quantitative information
+    """
     
     target_unit = 'mg/100g'
 
@@ -125,10 +282,7 @@ def __quant_handler__(df):
         
         for _, row in df[df['PMID'] == paper_id].iterrows():
             
-            #try:
             conversion = __unit_handler__(row['amount'], row['units'], target_unit)	# Sets the units for the whole output
-            #except:
-            #    print('\'' + row['units'] + '\'', "broke the conversion")
             
             # If there is an error or issiue in __unit_handler__, will return some sort of string
             if type(conversion) is not str:
@@ -145,7 +299,7 @@ def __quant_handler__(df):
 
                 paper_values.append(conversion)
             
-        
+        # Calculates average of means from papers
         if len(paper_values) > 0:
             means.append(sum(paper_values) / len(paper_values))
     
@@ -175,8 +329,22 @@ def __quant_handler__(df):
 
     return quant_pack
 
-# Recieves DataFrame of specific chemical and its various values
+
 def __build_chem_subdict__(df):
+    """
+        Receives DataFrame of specific chemical and its various values.
+
+        Parameters
+        -----------------
+        df : pd.DataFrame
+            Dataframe of specific chemical, quantification amount, and associated metadata from papers
+
+
+        Returns
+        -----------------
+        chem_subdict : dict
+            Dictionary with a chemical, amount, and metadata
+    """
     
     # Just take first chemical for general proxy
     chemical = df.chemical.tolist()[0]
@@ -218,57 +386,6 @@ def __build_chem_subdict__(df):
 
     return chem_subdict
 
-
-# Recieves of DataFrame of compiled data and appropriately calculates/reformats data into final structure
-# df must be standardized for project
-def build_data_dict(df):
-    
-    data_dict = {}  # Dict that holds all foods and chemicals, and their calculations
-
-    df['chemical'] = df['chemical'].str.strip()
-    df['chemical'] = df['chemical'].apply(greek_letter_converter)
-    
-    # Iterate over each unique food, and each unique chemical per food to create food, chem dict
-    for food in df['food'].drop_duplicates().tolist():
-        
-        chem_dict = {}   # Holds chemical calculations per food
-        
-        # need to do one loop for things with a chem id
-        for chem_id in df[(df['food'] == food) & (df['chem_id'].notnull())].chem_id.drop_duplicates().tolist():
-
-            #chem = greek_letter_converter(chem)
-            
-            f_chem_df = df[(df['food'] == food) & (df['chem_id'] == chem_id)]   # Filters DataFrame for rows with specific food-chemical combination
-            
-            new_entry = __build_chem_subdict__(f_chem_df)  # Reformats and caluclates values from seperate resources as dict
-
-            chem_dict[new_entry['chemical']] = new_entry
-        
-        for chem in df[(df['food'] == food) & (df['chem_id'].isnull())].chemical.drop_duplicates().tolist():
-
-            f_chem_df = df[(df['food'] == food) & (df['chemical'] == chem)]   # Filters DataFrame for rows with specific food-chemical combination
-            
-            new_entry = __build_chem_subdict__(f_chem_df)  # Reformats and caluclates values from seperate resources as dict
-            
-            chem_dict[new_entry['chemical']] = new_entry
-
-        data_dict[food] = chem_dict
-    
-    return data_dict
-
-# Converts a constructed data dictionary to a pandas dataframe
-def dict_to_df(data_dict):
-	df = pd.DataFrame()
-
-	for food, food_dict in data_dict.items():
-		for chemical, chem_dict in food_dict.items():
-			
-			chem_dict['food'] = food
-			chem_dict['chemical'] = chemical
-
-			df = df.append(chem_dict, ignore_index = True)
-
-	return df
 
 # Converts greek letter fillers to actual greek letters
 def greek_letter_converter(chem):
