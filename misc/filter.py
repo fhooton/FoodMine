@@ -210,19 +210,22 @@ class Filter():
 
 			Parameters
 			-----------------
-			row : pd.Series
-				Single row containing information on PubMed entry
-
+			text : string
+				Text to search for specified matcher pattern
+			
+			matcher : spacy Matcher object
+				Specific matcher with defined rules to use with the text input
 
 			Returns
 			-----------------
-			pubmed_features : dict
-				Dictionary containing the count frequencies for general, food, scientific name, and chemical terms.
+			presence of pattern : int
+				Returns 1 if there is any prsense of the matcher pattern, and 0 otherwise.
 		"""
 
 		# Retrieves the matches from text
 		match = matcher(self.nlp(text))
 
+		# Returns 1 if there are any matches, else 0
 		if len(match) > 0:
 			return 1
 
@@ -230,8 +233,23 @@ class Filter():
 			return 0
 
 
-	# Counts the number of times a match appears in a text and return list of matches
 	def __matches__(self, matcher, text):
+		"""
+			Calculates count frequence features from PubMed entry abstract and mesh terms.
+
+			Parameters
+			-----------------
+			matcher : spacy Matcher object
+				Specific matcher with defined rules to use with the text input
+
+			text : string
+				Text to search for specified matcher pattern
+
+			Returns
+			-----------------
+			match_count : int
+				Frequency of matches between the text input and matcher pattern
+		"""
 
 		text = self.nlp(text)
 
@@ -242,9 +260,22 @@ class Filter():
 		return match_count
 
 
-	# Creates a matcher object that identifies lists of words for incoming text
 	def __matcher_from_list__(self, dictionary):
-		
+		"""
+			Creates the spacy matcher object using an input dictionary of terms
+
+			Parameters
+			-----------------
+			dictionary : list
+				List of terms to be included as matching patterns
+
+
+			Returns
+			-----------------
+			matcher : spacy Matcher object
+				Frequency of matches between the text input and matcher pattern
+		"""
+
 		matcher = Matcher(self.nlp.vocab)
 
 		for term in dictionary:
@@ -257,10 +288,21 @@ class Filter():
 		return matcher
 
 
-	def __eval_conditionals__(self, row):
+	def __eval_conditionals__(self):
+		"""
+			Creates the spacy matcher object using an input dictionary of terms
 
-		# extract_pattern is a dictionary in ModelData where the keys are conditions
-		# and values actions if the condition is met
+			Parameters
+			-----------------
+			None
+
+
+			Returns
+			-----------------
+			eval(action) : 
+				Evaluation of action when an extraction pattern condition is met
+		"""
+		
 		for condition, action in self.extract_pattern.items():
 
 			if eval(condition):
