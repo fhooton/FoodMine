@@ -192,12 +192,15 @@ def pubchem_synonym_info(chem_name):
 			First name of compound listed in PubChem synonyms list
 	"""
 
+	# Creates synonym query url
 	url = construct_url(chem_name, 'synonym')
 	
 	with request.urlopen(url) as response:
 		xml = response.read()
 
-	root = root = etree.fromstring(xml)
+	root = etree.fromstring(xml)
+
+	# Extracts the compound ID and first synonym name
 	compound_id = float(root.findall(".//{http://pubchem.ncbi.nlm.nih.gov/pug_rest}CID")[0].xpath('.//text()')[0])
 	compound_name = str(root.findall(".//{http://pubchem.ncbi.nlm.nih.gov/pug_rest}Synonym")[0].xpath('.//text()')[0])
 
@@ -205,12 +208,28 @@ def pubchem_synonym_info(chem_name):
 
 
 def pubchem_SMILE(chem_id):
+	"""
+		Retrieves compound SMILE using pubchem ID.
+
+		Parameters
+		-----------------
+		chem_id : int
+			Compound pubchem ID
+
+
+		Returns
+		-----------------
+		SMILE : string
+			SMILE corresponding to input compound ID
+	"""
 	url = construct_url(chem_id, 'SMILE')
 
 	with request.urlopen(url) as response:
 		xml = response.read()
 
 	root = root = etree.fromstring(xml)
+
+	# Extracts the compound SMILE
 	SMILE = root.findall(".//{http://pubchem.ncbi.nlm.nih.gov/pug_rest}CanonicalSMILES")[0].xpath('.//text()')[0]
 
 	return SMILE
@@ -218,23 +237,47 @@ def pubchem_SMILE(chem_id):
 
 # Constructs appropriate url for pubmed api from search terms
 def construct_url(url_input, query_type, num_results = 1000000):
+	"""
+		Constructs the url for various pubchem queries
+
+		Parameters
+		-----------------
+		url_input : string or list depending on query_type
+			The input for a pubchem query such as pubchem id, pubmed id, or list of search terms
+
+		query_type : string
+			Specifies which search method should be used... can be "search", "document", "synonym", or "SMILE"
+
+		num_results : int
+			Top number of results to keep from a search query
+
+
+		Returns
+		-----------------
+		url : string
+			Url to pass to request
+	"""
 	
-	# Constructs url for search query
+	# Constructs url for search query from list of search terms
 	if query_type == 'search':
 		base_url = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term='
 
+		# Replace spaces with something that works with as a url
 		adjusted_terms = [s.replace(" ", "%20") for s in url_input]
 
+		# Join seperate search queries
 		term_url = '%20AND%20'.join(adjusted_terms)
 
-		# Maybe include later
+		# Cap the number of results
 		results_num_url = '&retmax=' + str(num_results)
 
 		return base_url + term_url + results_num_url
 
+	# Constructs url for document query from list of pubmed document ids
 	elif query_type == 'document':
 		base_url = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id='
 
+		# Handles either string or integer pubmed ids
 		doc_urls = ""
 		for i in url_input:
 			if isinstance(i, str): 
@@ -245,18 +288,40 @@ def construct_url(url_input, query_type, num_results = 1000000):
 		url = base_url + doc_urls.lstrip(",") + '&retmode=xml'
 
 		return url
-
+	
+	# Constructs url for synonym search from a chemical string
 	elif query_type == 'synonym':
 		url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/" + url_input + "/synonyms/XML"
 		return url
 
+	# Constructs url for SMILE retrival from a pubchem id string
 	elif query_type == 'SMILE':
 		url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/" + url_input + "/property/CanonicalSMILES/XML"
 		return url
 
+	else:
+		print('Please enter a valid query type ("search", "document", "synonym", or "SMILE")')
+
 
 # Divides doc ids for larger paper queries in retrieve_doc_info()
 def divide_list(ids, num_divisions):
+	"""
+		Splits a single list of ids into num_divisions numbers of seperate lists
+
+		Parameters
+		-----------------
+		ids : list
+			list of pubmed ids
+
+		num_divisions : int
+			Number of divisions in which to partition lists
+
+
+		Returns
+		-----------------
+		split_ids : 2d list
+			list of lists of pubchem ids
+	"""
 
 	split_ids = np.array_split(np.asarray(ids), num_divisions)
 	split_ids = [np.ndarray.tolist(split_ids[i]) for i in range(len(split_ids))]
