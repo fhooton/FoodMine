@@ -4,26 +4,33 @@ FoodMine is a food database project from the Barabasi Lab of the Network Science
 
 # Files
 
-#### Paper_Screening.ipynb
-	Notebook to search through the PubMed database and filter out search results.
+##### Paper_Screening.ipynb
+Notebook to search through the PubMed database and filter out search results.
 
-#### Data_Statistics.ipynb
-	Notebook to compare clean raw data, compare databases, and vizualize comparisons
+##### Data_Statistics.ipynb
+Notebook to compare clean raw data, compare databases, and vizualize comparisons.
 
 #### Molecule_Embedding.ipynb
-	Notebook to 
+Notebook to retrive molecule smiles, embed compounds, and vizualize embeddings.
 
 #### Paper_Citations.ipynb
+Notebook to analyze the citation overlap between CTD and the papers gathered in FoodMine.
 
 #### misc
+Miscellaneous functions and classes to serve as helpers in notebooks. 
 
 * **pubmed_util.py**
+Holds functions to interact with PubMed API for the purposes of our research.
 
 * **filter.py**
+Contains class Filter to filter out PubMed search results.
 
 * **collected_data_handling.py**
+Helper functions to clean and aggregate information into FoodMine database.
 
 #### data
+Folder that holds all raw data, or data not generated from files.
 
 #### misc_save
+Folder that holds miscellaneous saved data from files to speed up reproduction.
 
