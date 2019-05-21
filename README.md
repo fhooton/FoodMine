@@ -4,10 +4,10 @@ FoodMine is a food database project from the Barabasi Lab of the Network Science
 
 # Files
 
-##### Paper_Screening.ipynb
+#### Paper_Screening.ipynb
 Notebook to search through the PubMed database and filter out search results.
 
-##### Data_Statistics.ipynb
+#### Data_Statistics.ipynb
 Notebook to compare clean raw data, compare databases, and vizualize comparisons.
 
 #### Molecule_Embedding.ipynb
