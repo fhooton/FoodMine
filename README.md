@@ -29,8 +29,5 @@ Contains class Filter to filter out PubMed search results.
 Helper functions to clean and aggregate information into FoodMine database.
 
 #### data
-Folder that holds all raw data, or data not generated from files.
-
-#### misc_save
-Folder that holds miscellaneous saved data from files to speed up reproduction.
+Folder that holds raw data from paper data collection.
 
