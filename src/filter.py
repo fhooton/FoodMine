@@ -84,7 +84,7 @@ class Filter():
 		return selected_articles
 
 
-	def build_features(self, input_data=None):
+	def build_features(self, input_data=None, is_traindata=False):
 		"""
 			Creates features. In this instance word count frequencies.
 
@@ -137,6 +137,12 @@ class Filter():
 			}
 
 			data_row.update(pubmed_features)
+
+			# Use variable classes if data is training data, otherwise just mark as useful for search
+			if is_traindata:
+				data_row['class'] = row['is_useful']
+			else:
+				data_row['class'] = 1
 
 			# Add the existance of measurement methods as different features
 			for method in self.measurement_matchers.keys():
