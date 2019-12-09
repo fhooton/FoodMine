@@ -1,6 +1,6 @@
 # FoodMine
 
-FoodMine is a food database project from the Barabasi Lab of the Network Science Institute (Northeastern University). The objective of this project is to mine research litereature to uncover chemical contents in food. The code in this repository was used to generate the food pilots, plots, and other information in **insert paper title here**. Additionally, we have included the data from out initial experiments.
+FoodMine is a food database project from the Barabasi Lab of the Network Science Institute (Northeastern University). The objective of this project is to mine research litereature to uncover chemical contents in food. The code in this repository was used to generate the food pilots, plots, and other information in **FoodMine: Exploring Food Contents in Scientific Literature** (Hooton, Menichetti, Barabási). Additionally, we have included the data from out initial experiments.
 
 # Files
 
@@ -28,6 +28,9 @@ Contains class Filter to filter out PubMed search results.
 * **collected_data_handling.py**
 Helper functions to clean and aggregate information into FoodMine database.
 
+* **tools/chemidr**
+Suite of tools developed to interact with the PubChem API.
+
 #### data
-Folder that holds raw data from paper data collection.
+Folder that holds raw data from paper data collection. **Note that several files used in our analysis are too large to be uploaded to github**
 
