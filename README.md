@@ -16,7 +16,7 @@ Notebook to retrive molecule smiles, embed compounds, and vizualize embeddings.
 #### Paper_Citations.ipynb
 Notebook to analyze the citation overlap between CTD and the papers gathered in FoodMine.
 
-#### misc
+#### src
 Miscellaneous functions and classes to serve as helpers in notebooks. 
 
 * **pubmed_util.py**
