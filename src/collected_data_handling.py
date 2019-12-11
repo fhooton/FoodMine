@@ -379,7 +379,7 @@ def __build_chem_subdict__(df):
         'num_terms_quantified' : num_terms_quant,
         'chemical' : compound_name,
         'chem_id' : df.chem_id.tolist()[0],
-        'chem_id_p' : df.chem_id_p.tolist()[0]
+        'pubchem_id' : df.pubchem_id.tolist()[0]
     }
 
     chem_subdict.update(quant_pack)
