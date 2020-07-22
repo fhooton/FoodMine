@@ -45,11 +45,11 @@ Suite of tools developed to interact with the PubChem API.
 Scripts to download data folders hosted on Google Drive (large file sites prevents storing the files on Git).
 
 #### data
-Folder that holds raw data from paper data collection. **Note that several files used in our analysis are too large to be uploaded to github**
+Folder that holds raw data from paper data collection.
 
 Select data files:
 
-* (garlic/cocoa)_data.csv
+* data/(garlic/cocoa)_data.csv
 Files that contains extracted information such as chemcials, PMID's, origional units, and sample metadata
 
 * FoodMine_Output/fm_(garlic/cocoa).pkl

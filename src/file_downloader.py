@@ -48,23 +48,14 @@ from zipfile import ZipFile
 
 def unzip_file(dirzip):
     with ZipFile(dirzip, 'r') as zip: 
-        # printing all the contents of the zip file 
-        # zip.printdir() 
-      
-        # extracting all the files 
-        # print('Extracting all the files now...') 
         zip.extractall() 
-        # print('Done!')
 
 def download_core_data():
-    url = 'https://drive.google.com/uc?id=1-WZzObTLMltfAmqYmORuQJ3OxuKWpUo6'
+    url = 'https://drive.google.com/uc?id=1urQmygS0vrbWN_4nU6R44q85XkPomYLD'
     output = r"C:\Users\forresthooton\Documents\NetSci Research\Foodome Project\FoodMine\src\misc_save.zip"
     gdown.download(url, output, quiet=False)
 
     unzip_file(output)
-
-    # https://drive.google.com/file/d/1-WZzObTLMltfAmqYmORuQJ3OxuKWpUo6/view?usp=sharing
-
 
 def download_intermediate_data():
     url = 'https://drive.google.com/uc?id=1Enc3FOXDb8R2gGGVnn73FOQEAYqePn9M'
