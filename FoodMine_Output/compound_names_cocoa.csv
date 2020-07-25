@@ -1,0 +1,599 @@
+chemical,chem_id
+D-Fructopyranose,LKDRXBCSQODPBY
+fructose,JCOXAIPZGMCTBN
+D-Glucose,WQZGKKKJIJFFOK
+myo-inositol,CDAISMWEOUEBRE
+D-mannitol,FBPFZTCFMRRESA
+sucrose,CZMRCDWAGMRECN
+melibiose,DLRVVLDZNNYCBX
+RAFFINOSE,MUPFEKGTMRGPLJ
+Stachyose,UQZIYBXSHAGNOE
+kynurenic acid,HCZHHEIFKROPDY
+nicotinic acid,PVNIIMVLHYAWGP
+nicotinamide,DFPAKSUCGFBDDF
+L-tryptophan,QIVBCDIJIAJPQS
+palmitoyl-oleoyl-stearoyl-glycerol,UBHYXTYXWVQROF
+dipalmitoyl-oleoyl-glycerol,WPTWKBTVPNTFDZ
+dioleoyl-stearoyl-glycerol,KUAVGQCMPZSJNN
+distearoyl-linoleoyl-glycerol,IIXWWDDSAZIONU
+palmitoyl-dioleoyl-glycerol,FXBVMSHSVOUPAO
+stearoyl-oleoyl-linoleoyl-glycerol,XRMPUEGGOCLGPE
+palmitoyl-oleoyl-linoleoyl-glycerol,OHXNFPWKTMHQRN
+distearoyl-palmitoyl-glycerol,ZPTNDLHOVSIDDX
+Triolein,PHYFQTYBJUILEZ
+TRIPALMITIN,PVNIQBQSYATKKL
+dipalmitoyl-linolenoyl-glycerol,MRNQPXZFJWNVMY
+AFLATOXIN B1,OQIQSTLJSLGHID
+AFLATOXIN B2,WWSYXEZEXMQWHT
+Aflatoxin,XWIYFDMXXLINPU
+AFLATOXIN G2,WPCVRWVBBXIRMA
+"p,p'-DDE",UCNVFOCBFJOQAL
+"p,p'-DDD",AHJKRLASYNVKDZ
+Clofenotane,YVGGHNCTFXOJCH
+methoxychlor,IAKOZHOLGAGEJT
+heptachlor,FRCCEHPWNOQAEU
+cis-Chlordane,BIWJNBZANLAXMG
+gamma-Chlordan,JBZJEPYXXVKOKF
+Endosulfan I,RDYMFSUJUZBWLH
+aldrin,QBYJBZPUGVGKQQ
+dieldrin,DFBKLUNHFCTMDC
+ENDRIN ALDEHYDE,HCTWZIFNBBCVGM
+Endrin ketone,IZHZFAQWVKBTSL
+lindane,JLYXXMFPNIAWKQ
+phenols,WJFKNYWRSNBZNX
+oxalic acid,MUBZPKHOEPUJKR
+citric acid,KRKNYBCHXYNGOX
+malic acid,BJEPYKJPYRNKOW
+protein,134825002.0
+Lead,WABPQHHGFIMREM
+Cadmium,BDOSMKKIYDKNTQ
+theobromine,YAPQBXQYLJRXSA
+caffeine,RYYVLZVUVIJVGH
+OCHRATOXIN A,RWQKHEORZBHNRI
+ACRYLAMIDE,HRPVXLWXLXDGHG
+procyanidin dimer b3,134837208.0
+Procyanidin B1,XFZJEEAOWLFHDH
+(-)-Epicatechin,PFTAWBLQPZVEMU
+carbohydrates,134825003.0
+fat,134825001.0
+Isoquercitrin,OVSQVDMCBVZWGM
+quercetin,REFJWTPEDVJJIY
+quercetin-3-glucuronide,134842099.0
+Guaijaverin,PZZRDJXEMZMZFD
+SCHEMBL3161145,DAHASNDSDHUIRW
+N-Acetyl-L-glutamic acid,RFMMMVDNIPUKGG
+N-Acetyl-L-aspartic acid,OTCCIMWXFLJLIA
+5-HYDROXYMETHYLFURFURAL,NOEGNKMFWQHSLB
+Chromium,VYZAMTAEIAYCRO
+Manganese,PWHULOQIROXLJO
+Cobalt,GUTLYIVDDKVIGB
+Arsenic,RQNWIZPPADIBDY
+Molybdenum,ZOKXTWBITQBERF
+Bismuth,JCXGWMGPZLAOME
+Phenethylamine,BHHGXPLMPWCGHP
+"1,4-diaminobutane",KIDHWZJUCRJVML
+"Pentane-1,5-diamine",VHRGRCVQAFMJIZ
+histamine,NTYJJOPFIAHURM
+tyramine,DZGWFCGJZKJUFP
+spermidine,ATHGHQPFGPMSJY
+spermine,PFNFFQXMRSDOHW
+saturated fatty acids,134846594.0
+unsaturated fatty acids,134846595.0
+moisture,134838393.0
+ash,UIESIEAPEWREMY
+Calcium,OYPRJOBELJOOCE
+Magnesium,FYYHWMGAXLPEAU
+Potassium,ZLMJMSJWJFRBEC
+phosphorus,OAICVXFJPJFONN
+Iron,XEEYBQQBJWHFJM
+Copper,RYGMFSIKBFXOCR
+Zinc,HCHKCACWOHOZIP
+Sodium,KEAYESYHFKHZAL
+Selenium,BUGBHKTXTAQXES
+acetone,CSCPPACGZOOCGX
+METHYL ACETATE,KXKVLQRXCPHEJC
+ISOBUTYRALDEHYDE,AMIMRNSIRUDHCM
+"2,3-butanedione",QSJXEFYPDANLFS
+2-Butanone,ZWEHNKRNPOVVGH
+3-Methylbutanal,YGHRJJRRZDOVPD
+2-Methylbutyraldehyde,BYGQBDHUGHBGMD
+Valeraldehyde,HGBOYTHUEUWSSQ
+acetoin,ROWKJAVDOGWPAT
+HEXANAL,JARKCYVAAOWBJS
+acetic acid,QTBSBXVTEAMEQO
+DIMETHYLMALONIC ACID,OREAFAJWWJHCOT
+"2,3-butanediol",OWBTYPJTUOEWEK
+ISOVALERIC ACID,GWYFCOCPABKNJV
+2-Methylbutanoic acid,WLAMNBDJUVNPJU
+FURFURYL ALCOHOL,XPFVYQJUAUNWIW
+benzyl alcohol,WVDDGKGOMKODPV
+2-PHENYLETHANOL,WRMNZCZEMHIOCP
+benzoic acid,WPYMKLBDIGXBTP
+Isopentyl benzoate,MLLAPOCBLWUFAP
+2-METHYLPYRAZINE,CAWHJQAVHZEVTJ
+"2,5-DIMETHYLPYRAZINE",LCZUOKDVTBMCMX
+"2,3-DIMETHYLPYRAZINE",OXQOBQJCDNLAPO
+2-ETHYLPYRAZINE,KVFIJIWMDBAGDP
+"2,3,5-Trimethylpyrazine",IAEGWXHKWJGQAZ
+2-ETHYL-6-METHYLPYRAZINE,RAFHQTNQEZECFL
+"3-Ethyl-2,5-dimethylpyrazine",WHMWOHBXYIZFPF
+"2,3,5,6-Tetramethylpyrazine",FINHMKGKINIASC
+benzaldehyde,HUMNYLRZRPPJDN
+1H-Pyrrole-2-carbaldehyde,ZSKGQVFRTSEPJT
+phenylacetaldehyde,DTUQWGWMVIHBKE
+2-ACETYLPYRROLE,IGJQUJNPMOYEJY
+"3,5-Dimethylbenzaldehyde",NBEFMISJJNGCIZ
+vanillin,MWOOGOJBHIARFG
+ALPHA-PINENE,GRWFGVWFFZKLTI
+BETA-PINENE,WTARULDDTDQWMU
+theophylline,ZFXYFBGIUFBOJW
+Chlormequat,JUZXDNPBRPUIOR
+DIFENZOQUAT,LBGPXIPGGRQBJW
+DIQUAT,SYJFEGQWDCRVNX
+Mepiquat,NNCAWEWCFVZOGF
+PARAQUAT,INFDPOAKFNIJBF
+pyrocatechol,YCIMNLLNPGFGHC
+pyrogallol,WQGWDDDVZFFDIG
+3-methylcatechol,PGSWEKYNAOWQDF
+4-Methylcatechol,ZBCATMYQYDCTIZ
+4-Ethylcatechol,HFLGBNBLMBSXEM
+Procyanidin B5,GMISZFQPFDAPGI
+Procyanidin C1,MOJZMWJRUKIQGL
+EINECS 250-156-0,CJBIGGJNXVLZLI
+"3,4-DIHYDROXYBENZOIC ACID",YQUVCSBJEUQKSH
+Proanthocyanidin A2,NSEWTSAADLNHNH
+Arecatannin A3,QRFZGLTZLZZHCM
+Nitrogen,IJGRMHOSHXDMSA
+Carbon,OKTJSMMVPCPJKN
+cholesterol,HVYWMOMLDIMFJA
+Benz[a]anthracene,DXBHBZVCASKNBY
+CHRYSENE,WDECIBYCCFPHNR
+Benzo[b]fluoranthene,FTOVXSOBNPWTSH
+benzo[a]pyrene,FMMWHPNWAFZXNH
+linoleic acid,OYHQOLUKZRVURQ
+(-)-Epigallocatechin gallate,WMBWREPUVVBILR
+(+)-Catechin Hydrate,OFUMQWOJBVNKLR
+2-PENTANOL,JYVLIDXNZAXMDK
+Dimethyl disulfide,WQOXQRCZOLPYPM
+SEC-BUTYL ACETATE,DCKVNWZUADLDEH
+toluene,YXFVVABEGXRONW
+2-PENTYL ACETATE,GQKZRWSUJHVIPE
+ISOAMYL ACETATE,MLFHJEHSLIIPHL
+2-METHYLBUTYL ACETATE,XHIUFYZDQBSEMF
+2-HEPTANONE,CATSNJVOTSVZJV
+2-HEPTANOL,CETWDUZRCINIHU
+4-Hydroxy-2-butanone,LVSQXDHWDCMMRJ
+5-METHYLFURFURAL,OUDFNZMQXZILJD
+Dimethyl trisulfide,YWHLKYXPLRWGSE
+MYRCENE,UAHWPYUMFXYFJY
+Dipentene,XMGQYMWWDOXHJM
+,KWOLFJPFCHCOCG
+2-NONANONE,VKCYHJWLYTUGCC
+2-Isopropyl-5-methyl-2-hexenal,IOLQAHFPDADCHJ
+Phenethyl acetate,MDHYEMXUFSJLGV
+UNII-3H3RLE97D6,BHGYUIZFHKUJAB
+stigmasteryl palmitate,OHLDETMXEXJUDZ
+2308-85-2,IWTJDVBNIUPPPB
+lignin,MNCUGCKRKXNGQK
+cellulose,GUBGYTABKSRVRQ
+Myosmine,DPNGWXJMIILTBS
+4-Methylimidazole,XLSZMDLNRCVEIJ
+2-METHYLIMIDAZOLE,LXBGSDVWAMZHDD
+2-Athbi,CQSIXFHVGKMLGQ
+PHENYLACETIC ACID,WLJVXDMOQOGPHL
+ISOBUTYRIC ACID,KQNPFQTWMSNSAP
+3658-77-3,INAXVXBDKKUCGI
+butyric acid,FERIUCNNQQJTOY
+guaiacol,LHGVFZTZFXWLCP
+P-CRESOL,IWDCLRJOBJJRNH
+3-Methyl-1H-indole,ZFRKQXVRDFCRJG
+"2-ETHYL-3,5-DIMETHYLPYRAZINE",JZBCTZLGKSYRSF
+28664-35-9,UNYNVICDCJHOPO
+"2,3-DIETHYL-5-METHYLPYRAZINE",PSINWXIDJYEXLO
+"1-(3,4-Dihydro-2H-pyrrol-5-yl)ethanone",DQBQWWSFRPLIAX
+Methyl 2-methyl-3-furyl disulfide,SRUTWBWLFKSTIS
+2-ISOBUTYL-3-METHOXYPYRAZINE,UXFSPRAGHGMRSQ
+Cinnamtannin A2,QFLMUASKTWGRQE
+Polydatin,HSTZMXCBWJGKHG
+Cyclo(-Pro-Val),XLUAWXQORJEMBD
+2873-36-1,SZJNCZMRZAUNQT
+7280-77-5,QPDMOMIYLJMOQJ
+Cyclo(-Val-Val),HAISJRNRDKAUQG
+Maculosin,LSGOTAXPWMCUCK
+CYCLO(-PHE-SER),WIJKWEYCUNYTGY
+L-leucine,ROHFNLRQFUQHCH
+L-tyrosine,OUYCCCASQSFEME
+l-isoleucine,AGPKZVBTJJNPAG
+L-valine,KZSNJWFQEVHDMF
+L-lysine,KDXKERNSBIXSRK
+L-arginine,ODKSFYDXXFIFQN
+L-histidine,HNDVDQJCIGZPNO
+L-phenylalanine,COLNVLDHVKWLRT
+4-aminobutyric acid,BTCSSZJGUNDROE
+dl-3-Aminoisobutyric acid,QCHPKSFMDHPSNR
+trans-Clovamide,GPZFXSWMDFBRGS
+n-[4'-hydroxy-(e)-cinnamoyl]-l-aspartic acid,FKBRNPNAUOXZMQ
+N-(4-Hydroxycinnamoyl)tyrosine,LEEDEKWKJVUWGA
+Deoxyclovamide,JRXLVUMFJASLDR
+860295-23-4,PRCRWIWEDONYKC
+lactic acid,JVTAAEKCZFNVCJ
+O-phospho-L-serine,BZQFBWGGLXLEPQ
+2-Aminoethyl dihydrogen phosphate,SUHOOTKUPISOBE
+L-alanine,QNAYBMKLOCPYGJ
+beta-alanine,UCMIRNVEIXFBKS
+L-serine,MTCFGRXMJLQNBG
+glycine,DHMQDGOQFOQNFH
+L-proline,ONIBWKKTOPOVIA
+L-threonine,AYFVYJQAPQTCCC
+L-glutamic acid,WHUUTDBJXJRKMK
+L-aspartic acid,CKLJMWTZIZZHCS
+"trans-2,cis-6-Nonadienal",HZYHMHHBBBSGHB
+"(2E,4E)-deca-2,4-dienal",JZQKTMZYLHNFPL
+trans-2-Nonenal,BSAIUMLZVGUGKX
+Heptanal,FXHGMKSSBGDXIY
+NONANAL,GYHFUZHODSMOHU
+DELTA-DECALACTONE,GHBSPIPJMLAMEP
+1-Pentanol,AMQJEAYHLZJPGS
+MALTOL,XPCTZQVDEJYUGT
+BENZONITRILE,JFDZBHWFFUWGJE
+indole,AYVVZVSBYJTFGL
+phenol,ISWSIDIOOBJBQZ
+Gallic acid,LNTHITQWFMADLM
+trolox,GLEVLJDDWXEYCO
+FERROUS SULFATE,BAUYGSIQEAFULO
+"Indeno[1,2,3-cd]pyrene",SXQBHARYMNFBPS
+Benzo[ghi]perylene,GYFAGKUZYNFMBN
+(-)-Epigallocatechin,XMOCLSLCDHWDHP
+Dipalmitostearin,DQKMNCLZNGAXNX
+Palmitodiolein,JFISYPWOVQNHLS
+"1,2-Dioleoyl-3-stearoyl-rac-glycerol",RYNHWWNZNIGDAQ
+palmitic acid,IPCSVZSSVZVIGE
+stearic acid,QIQXTHQIDYTFRH
+oleic acid,ZQPPMHVWECSIRJ
+Arachidic acid,VKOBVWXKNCXXDE
+CAMPESTEROL,SGNBVLSWZMBQTH
+STIGMASTEROL,HCXVJBMSMIARIN
+trans-2-Octenal,LVBXEMGDVWVTGY
+1-OCTEN-3-ONE,KLTVSWGXIAYTHO
+2-METHYLPENTANE,AFABGHUZZDYHJO
+acetaldehyde,IKHGUXGNUITLKF
+PYRIDINE,JUJWROOIHBZHMG
+DODECANE,SNRUBQQJIBEYMU
+ethanol,LFQSCWFLJHTTHZ
+FURFURAL,HYBBIBNJHNGZAN
+HEXANE,VLKZOEOYAKHREP
+ISOBUTYL ACETATE,GJRQTCIYDGXPES
+Linalool,CDOSHBSSFJOMGT
+methanol,OKKJLVBELUTLKV
+Methional,CLUWOWRTHNNBBU
+delta-Tocopherol,GZIFEOYASATJEH
+beta-carotene,OENHQHLEOONYIE
+CHLOROGENIC ACID,CWVRJTMFETXNAD
+Isopropyl citrate,XBLJCYOUYPSETL
+Nicotiflorin,RTATXGUCZHCSNG
+luteolin,IQPNAANSBPBGFQ
+Boron,ZOXJGFHDIHLPTG
+Flavan-3-ol,OEIJRRGCTVHYTH
+Salsolinol,IBRKLUSXDYATLG
+2-Phenylcrotonaldehyde,DYAOGZLLMZQVHY
+5-Methyl-2-phenyl-2-hexenal,YURDCJXYOLERLO
+2-METHYL-1-BUTANOL,QPRQEDXDYOZYLA
+Isoamyl alcohol,PHTQWCKDNZKARW
+2-Heptyl acetate,VJYWBLDDQZIGJI
+Ethyl 2-methylbutyrate,HCRBXQFHJMCTLF
+ETHYL ACETATE,XEKOWRVHYACXOJ
+ETHYL DECANOATE,RGXWDWUGBIJHDO
+ETHYL LAURATE,MMXKVMNBHPAILY
+Ethyl caproate,SHZIWNPUGXLXDT
+ETHYL ISOBUTYRATE,WDAXFOBOLVPGLV
+ETHYL ISOVALERATE,PPXUHEORWJQRHJ
+ETHYL LACTATE,LZCLXQDLBQLTDK
+ETHYL OCTANOATE,YYZUSRORWSJGET
+ETHYL PHENYLACETATE,DULCUDSUACXJJC
+ETHYL PROPIONATE,FKRCODPIKNYEAC
+METHYL LACTATE,LPEKGGXMPWTOCB
+Propyl acetate,YKYONYBAUNKHLG
+Hydroxyacetone,XLSMFKSTNGKWQX
+propionic acid,XBDQKXXYIPTUBI
+L-asparagine,DCXYFEDJOCDNAF
+L-glutamine,ZDXPYRJPNDTMRX
+DL-CYSTINE,LEVWYRKDKASIDU
+L-methionine,FFEARJCKVFRZRR
+2-Pentanone,XNLICIUVMPYHGG
+4-METHYLHEPTANE,CHBAWFGIXDBEBT
+"1,3-BUTANEDIOL",PUPZLCDOIYMWBV
+"2,4-DIMETHYLHEPTANE",AUKVIBNBLXQNIZ
+"1,2,3,4-Tetrahydronaphthalene",CXWXQJXEFPUFDZ
+"1,3-Di-tert-butylbenzene",ILNDSSCEZZFNGE
+aldehydes,134829859.0
+2-Hydroxydodecyl methacrylate,RDFIICFCNKXLHC
+esters,YEYCQJVCAMFWCO
+caffeic acid,QAIPRVGONGVQAS
+catechin,134827571.0
+Aluminum,XAGFODPZIPBFFR
+lipid,
+oleoyl-distearoyl-glycerol,
+palmitoyl-linoleoyl-stearoyl-glycerol,
+dipalmitoyl-linoleoyl-glycerol,
+stearoyl-oleoyl-arachideoyl-glycerol,
+psp dipalmitoyl-stearoyl-glycerol,
+stearoyl-oleoyl-margareoyl-glycerol,
+palmitoyl-oleoyl-margareoyl-glycerol,
+dioleoyl-myristeoyl-glycerol,
+dioleoyl-arachideoyl-glycerol,
+distearoyl-arachideoyl-glycerol,
+stearoyl-oleoyl-palmitoyl-glycerol,
+palmitoyl-linolenoyl-stearoyl-glycerol,
+myristoyl-oleoyl-palmitoyl-glycerol,
+distearoyl-linolenoyl-glycerol,
+ochratoxin,
+heptachlorepoxide,
+endosulfan sulfate,
+α - hexachlorobenzene,
+titratable acidity,
+total soluble solids,
+reducing sugars,
+procyanidin trimers c1,
+fiber,
+throbromine,
+lead ii,
+cobalt ii,
+"n-[3?,4?-dihydroxy-(e)-cinnamoyl]-l-aspartic acid",
+"n-[3?,4?-dihydroxy-(e)-cinnamoyl]-l-glutamic acid",
+"n-[3?,4?- dihydroxy-(e)-cinnamoyl]-3-hydroxy-l-tyrosine",
+"n-[3?,4?- dihydroxy-(e)-cinnamoyl]-l-tyrosine",
+n-[4?-hydroxy-(e)-cinnamoyl]-l-aspartic acid,
+n-[4?-hydroxy-(e)-cinnamoyl]- l-glutamic acid,
+n-[4?-hydroxy-(e)-cinnamoyl]-3-hydroxy-ltyrosine,
+n-[4?- hydroxy-(e)-cinnamoyl]-l-tyrosine,
+n- [4?-hydroxy-3?-methoxy-(e)-cinnamoyl]-l-aspartic acid,
+"n-[3?,4?-dihydroxy-(e)-cinnamoyl)-l-tryptophan",
+n-[4?- hydroxy-(e)-cinnamoyl]-l-tryptophan,
+n-[4?-hydroxy-3?-methoxy-(e)- cinnamoyl]-l-tryptophan,
+n-[4?-hydroxy3?-methoxy-(e)-cinnamoyl]-l-tyrosine,
+aflatoxins b1,
+aflatoxins b2,
+aflatoxins g1,
+aflatoxins g2,
+n-phenylpropenoyl-l-amino acids,
+fatty acid tryptamides c22,
+fatty acid tryptamides c24,
+monounsaturated fatty acids,
+polyunsaturated fatty acids,
+total protein,
+carbohydrate by difference,
+"fibre, total dietary",
+total fat,
+35-dimethyl-dihydro-furan-2-one,
+"3,5-dihydroxy-6-methyl-2,3-dihydro-pyran-4-one",
+35-dimethyl-octane,
+8-hydroxy-3-methyl-iso-chroman-1-one,
+procyanidin monomers,
+procyanidin 2-3-mers,
+procyanidin 4-6-mers,
+procyanidin 7-10-mers,
+procyanidin polymers,
+dry matter,
+procyanidin trimer 2,
+procyanidin trimer 3,
+procyanidin trimer 4,
+procyanidin tetramer 2,
+quercetin glucoside,
+n-caffeoyl aspartate,
+n-coumaroyl aspartate,
+n-caffeoyl hydroytyrosol,
+n-caffeoyl tyrosol,
+n-coumaroyl tyrosinate,
+monomers,
+dimers,
+trimers,
+tetramers,
+pentamers,
+hexamers,
+heptamers,
+octamers,
+nonamers,
+decamers,
+polymers,
+δ 15nitrogen,
+δ 13carbon,
+δ 15 nitrogen,
+δ 13 carbon,
+anit oxidant activity,
+(?)-epicatechin,
+oligomeric proanthocyanidin,
+polycyclic aromatic hydrocarbons,
+myristic,
+palmitic,
+palmitoleic,
+stearic,
+oleic,
+arachidic,
+behenic,
+monomeric procyanidins,
+dimeric procyanidins,
+trimeric procyanidins,
+tetrameric procyanidins,
+pentameric procyanidins,
+hexameric procyanidins,
+heptameric procyanidins,
+octameric procyanidins,
+3-methylbutanala,
+"dihydro-2-methyl-3(2h)-furanonea,e and hexanal",
+"2,3-dimethylpyrazine, 3-hydroxy-2-butanone (acetoine)",
+"3(or 2)-ethyl-2(or 3),5-dimethylpyrazine",
+oxyde de linalool,
+ã¢-phenylethanol,
+"2,3,5-trimethyl-6-ethylpyrazine, 3,5-diethyl-2-methylpyrazine",
+ethyloctanoate,
+r-ethylidene benzene acetaldehyde (2-phenylbut-2-enal),
+5-methyl-2-phenyl-2-hexanal,
+linolenic,
+saturated fat,
+monounsaturated fat,
+polyunsaturated fat,
+palmic,
+proanthocyanidin 1,
+proanthocyanidin 2,
+proanthocyanidin 3,
+proanthocyanidin 4-6,
+proanthocyanidin 7-10,
+proanthocyanidin >10,
+"campesteryl stearate, -oleate, -linoleate",
+"stigmasteryl stearate, -oleate, -linoleate",
+"sitosteryl stearate, -oleate, -linoleate",
+hemicellulose,
+palmitoyl-oleoyl-palmitoylglycerol,
+stearoyl-oleoyl-stearoylglycerol,
+δ 13 carbon-6,
+δ 13 carbon-7,
+δ 13 carbon-8,
+δ 13 carbon-2,
+δ 13 carbon-4,
+δ 13 carbon-5,
+δ 13 carbon-14,
+δ 13 carbon-12,
+δ 13 carbon-10,
+2?stearo?dipalmitin,
+2?oleo?dipalmitin,
+2-linoleo-dipalmitin,
+2- palmito-distearicin,
+oleo-stearo-palmitin,
+2-palimto-dioleocin oop,
+oleo-linoleo-palmitin,
+2-palmito-dilinoleicin,
+tristearicin,
+2-oleo-distearicin,
+2-palmito-oleicin,
+trioleicin,
+2-methylbutanalb,
+2-methylbutanoic acidb,
+δ-decenolactoneb,
+δ-octenolactoneb,
+δ-decalactoneb,
+linaloolb,
+γ-decalactoneb,
+γ-nonalactoneb,
+γ-octalactoneb,
+gal-ec-ec,
+cyclo(l-ala-l-leu),
+cyclo(l-pro-l-ile),
+cyclo(l-pro-l-ala),
+cyclo(l-ala-l-phe),
+cyclo(l-val-l-phe),
+cyclo(l-pro-l-phe),
+cyclo(l-phe-gly),
+cyclo(l-val-l-tyr),
+cyclo(l-pro-gly),
+cyclo(l-leu-gly),
+quercetin-3-o-β-d-glucopyranoside,
+quercetin-3-o-α-l-arabinopyranoside,
+luteolin-7-o-β-d-glucopyranoside,
+apigenin-8-c-β-d-glucopyranoside,
+apigenin-6-c-β-d-glucopyranoside,
+naringenin-7-o-β-d-glucopyranoside,
+"n-[3',4'-dihydroxy-(e)-cinnamoyl]-l-aspartic acid",
+succinic acidg,
+2- and 3-methylbutanal,
+dideoxyclovamide,
+monomer gallate,
+monomer derivatives,
+dimer derivatives,
+pca type,
+(+) catechin,
+quercetin-3-o-?-d-glucofuranoside,
+quercetin-3-o-?-d-glucopyranoside,
+diglycerides,
+dipalmitolein,
+palmitoleostearin,
+oleodistearin,
+stearolinolein,
+stearoleoarachidin,
+2-heptanonea,
+acetonea,
+ethyl acetatea,
+methylbutanala,
+phenylacetaldehydea,
+tmp,
+trmpa,
+oleic acid + isomers,
+(iso)citric acid,
+apigenin hexoside,
+β-d-xylopyranosyl-î±-l-rhamnopyranosyl-d-fucose,
+caffeoyl aspartate,
+feruloyl aspartate,
+(epi)catechin hexoside,
+catechin sulphonic acid,
+cis-3-hexenyl î²-primeveroside,
+dimethoxygallic acid glucopyranoside,
+dimethyl-o-ec-ec-ecg trimer,
+dimethyl-o-ec-ecg dimer,
+dimethyl-o-procyanidin b dimer,
+dimethyl-o-procyanidin b tetramer,
+dimethyl-o-procyanidin b trimer,
+(-)-epicatechin (7.1) & (+)-catechin (5),
+hydroxyjasmonic acid sulfate,
+(iso)leucine hexoside (amadori),
+kaempferol-3-o-hexoside,
+naringenin hexoside,
+octen-3-yl primeveroside,
+p-coumaroyl aspartate,
+p-coumaroyl glutamate,
+p-coumaroyl glutamine,
+phenylalanine hexoside (amadori),
+procyanidin 2a-type trimer,
+procyanidin a-type dimer,
+procyanidin a-type dimer arabinoside,
+procyanidin a-type dimer hexoside,
+procyanidin a-type hexamer,
+procyanidin a-type hexamer arabinoside,
+procyanidin a-type hexamer hexoside,
+procyanidin a-type pentamer,
+procyanidin a-type pentamer arabinoside,
+procyanidin a-type pentamer hexoside,
+procyanidin a-type tetramer,
+procyanidin a-type tetramer arabinoside,
+procyanidin a-type tetramer hexoside,
+procyanidin a-type trimer,
+procyanidin a-type trimer arabinoside,
+procyanidin a-type trimer hexoside,
+procyanidin b-type decamer,
+procyanidin b1 & procyanidin b2,
+procyanidin b-type dimer hexoside,
+procyanidin b-type heptamer,
+procyanidin b-type hexamera,
+procyanidin b-type nonamer,
+procyanidin b-type octamer,
+procyanidin b-type pentamera,
+procyanidin b-type tetramera,
+procyanidin b-type trimera,
+procyanidin b-type undecamer,
+proline diglucoside (amadori),
+prolylhydroxproline/n-acetylalanylproline,
+quercetin-3-o-arabinosideb,
+quercetin-3-o-hexosideb,
+sucrosea,
+vanillic acid diglucoside,
+vanillic acid glucoside,
+polyphenols,
+aglycone,
+antioxidants,
+flavan-3-ols,
+mineral,
+carbon 50,
+carbon 52,
+carbon 54,
+carbon 56,
+amino acids,
+proteins,
+fats,
+"2,3 butanediol",
+"2,4 dimethyl-1-heptene",
+3-methylbutyl,
+alkanes/alkenes,
+aromatics (benzene derivatives),
+carboxylic acids,
+total polyphenol,
+total flavonoid,
+proantocyanidins,
+nanomers,

@@ -1,0 +1,15 @@
+pandas
+numpy
+matplotlib
+seaborn
+tqdm
+rdkit
+gensim
+sklearn
+fuzzywuzzy
+unit_converter
+lxml
+gdown
+spacy
+en_core_web_sm
+notebook
