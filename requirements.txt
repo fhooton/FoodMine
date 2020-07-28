@@ -11,3 +11,5 @@ lxml
 gdown
 spacy
 notebook
+statsmodels
+git+https://github.com/samoturk/mol2vec
