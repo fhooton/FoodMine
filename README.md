@@ -2,9 +2,23 @@
 
 FoodMine is a food database project from the Barabasi Lab of the Network Science Institute (Northeastern University). The objective of this project is to mine research litereature to uncover chemical contents in food. The code in this repository was used to generate the food pilots, plots, and other information in [FoodMine: Exploring Food Contents in Scientific Literature](https://www.biorxiv.org/content/10.1101/2019.12.17.880062v1) (Hooton, Menichetti, Barabási). Additionally, we have included the data from out initial experiments.
 
+Getting started using a conda env:
+
+```shell
+conda create --name foodmine python=3.6
+conda activate foodmine
+```
+
+Installing packages:
+
+```shell
+pip install -r requirements.txt
+./install_additional_packages.sh
+```
+
 Run the [python notebooks](https://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/) in the following order to replicate the FoodMine process.
  - Paper_Screening.ipynb
- - Data_statistics.ipynb (this notebook is key to running other files as it downloads relevant data hosted online)
+ - Data_statistics.ipynb (this notebook is key to running other downstream files as it downloads relevant data hosted online)
  - Molecule_Embedding.ipynb
  - Paper_Citations.ipynb (this notebook is not runnable without a Microsoft Acedemic Graph API key)
  - Phenol_Explorer_Comparison.ipynb

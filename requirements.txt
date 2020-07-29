@@ -12,4 +12,6 @@ gdown
 spacy
 notebook
 statsmodels
+colorcet
+xlrd
 git+https://github.com/samoturk/mol2vec

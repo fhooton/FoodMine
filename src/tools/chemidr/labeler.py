@@ -271,19 +271,15 @@ def get_compound_pubchem_info(chem):
     if __is_nutrient__(chem):
         return np.nan, np.nan
         
-    # try:
     req = __clean_term__(chem, convert_letter=False)
     compound_id, compound_name = __exact_retrevial__(req)
     
     if not math.isnan(compound_id):
         return compound_id, compound_name
-    # except:
-        # try:
+
     req = __clean_term__(chem, convert_letter=False, w_space=False)
     compound_id, compound_name = __exact_retrevial__(req)
-        # except:
-            # pass
-            # try:
+
     if not math.isnan(compound_id):
         return compound_id, compound_name
 
@@ -338,25 +334,6 @@ def append_foodb_id(df, chem_key, load_ids=True):
     
     # Merge on matching names
     df = df.merge(fdb_compounds, how = 'left', left_on = chem_key, right_on = 'name')
-    
-    # if load_ids:
-    #     with open(__make_fp__('intermediate_save/fdb_synonyms.pkl'), 'rb') as f:
-    #         input_dict = pickle.load(f)
-    # else:
-    #     # Need to ensure document is in folder
-    #     compound_synonyms = pd.read_csv(__make_fp__('data/compound_synonymssql.csv'))
-
-    #     # Only keep columns with synonym and synonym id
-    #     syn_reduced = compound_synonyms[['source_id', 'synonym']]
-    #     syn_reduced = syn_reduced.rename(index=str, columns={"source_id": "foodb_id"})
-    #     syn_reduced.synonym = syn_reduced.synonym.str.strip().str.lower()
-    
-    #     input_dict = {row['synonym'] : row['foodb_id'] for _, row in syn_reduced.iterrows()}
-        
-    #     with open(__make_fp__('intermediate_save/fdb_synonyms.pkl'), 'wb') as f:
-    #         pickle.dump(input_dict, f)
-
-    # df.foodb_id = df.apply(__check_key__, id_col='foodb_id', str_col=chem_key, input_dict=input_dict, axis=1)
     
     if load_ids:
         with open(__make_fp__('intermediate_save/fdb_source_strings.pkl'), 'rb') as f:
@@ -421,15 +398,9 @@ def append_pubchem_id(df, chem_key):
 
     i = 0
     for idx, row in df.iterrows():
-        # get_compound_pubchem_info() creates an error if the chemical does not exist
-        # try:
         ID, name = get_compound_pubchem_info(row[chem_key])
         df.at[idx, 'pubchem_id'] = ID
         df.at[idx, 'pubchem_name'] = name
-            
-        # except:
-            # print(row[chem_key])
-            # pass
         
         if not i % 1000:
             print(idx, 'chems searched in', (time.time() - start) / 60, "min")
@@ -439,37 +410,6 @@ def append_pubchem_id(df, chem_key):
     print("Pubchem ids added in", (time.time() - start) / 60, "min")
 
     return df
-
-def __darkmatter_database__(df, chem_key):
-    dmdb = pd.read_csv(__make_fp__('data/DarkMatter Databases.csv'))
-
-    dmdb.name = dmdb.name.str.lower()
-    dmdb.USDA = dmdb.USDA.str.lower()
-
-    dmdb.Pubchem = dmdb.Pubchem.replace('0', np.nan)
-    dmdb['FooDB ID'] = dmdb['FooDB ID'].replace('0', np.nan)
-
-    for idx, row in df.iterrows():
-        if np.isnan(row['pubchem_id']):
-            if row[chem_key] in dmdb['name'].tolist():
-                df.at[idx, 'pubchem_id'] = float(dmdb[dmdb['name'] == row[chem_key]].Pubchem.tolist()[0])
-                df.at[idx, 'inchikey'] = dmdb[dmdb['name'] == row[chem_key]].start.tolist()[0]
-                df.at[idx, 'foodb_id'] = float(dmdb[dmdb['name'] == row[chem_key]]['FooDB ID'].tolist()[0])
-
-            elif row[chem_key] in dmdb['USDA'].tolist():
-                df.at[idx, 'pubchem_id'] = float(dmdb[dmdb['USDA'] == row[chem_key]].Pubchem.tolist()[0])
-                df.at[idx, 'inchikey'] = dmdb[dmdb['USDA'] == row[chem_key]].start.tolist()[0]
-                df.at[idx, 'foodb_id'] = float(dmdb[dmdb['USDA'] == row[chem_key]]['FooDB ID'].tolist()[0])
-
-        elif np.isnan(row['foodb_id']):
-            if row[chem_key] in dmdb['name'].tolist():
-                df.at[idx, 'foodb_id'] = float(dmdb[dmdb['name'] == row[chem_key]]['FooDB ID'].tolist()[0])
-
-            elif row[chem_key] in dmdb['USDA'].tolist():
-                df.at[idx, 'foodb_id'] = float(dmdb[dmdb['USDA'] == row[chem_key]]['FooDB ID'].tolist()[0])
-
-    return df
-
 
 
 def id_searcher(df, chem_key, fdb = True, pubchem = True, use_prefix=True):
@@ -504,16 +444,8 @@ def id_searcher(df, chem_key, fdb = True, pubchem = True, use_prefix=True):
     
     total = len(df[chem_key].drop_duplicates())
     
-    # num_covered = len(df[df.pubchem_id.notnull()].pubchem_id.drop_duplicates())
-    # print('Pubchem unique compound coverage', num_covered / total, '%')
-    
-    # num_covered = len(df[df.foodb_id.notnull()].foodb_id.drop_duplicates())
-    # print('FooDB unique compound coverage', num_covered / total, '%')
-
     df.at[df[df.pubchem_id.notnull()].index, 'inchikey'] = cids2inchis(df[df.pubchem_id.notnull()].pubchem_id.tolist(), use_prefix=use_prefix)
     
-    df = __darkmatter_database__(df, chem_key)
-
     # Manually looked up the maximum pubchem index to make sure id's don't overlap
     max_p_index = 134825000
 
@@ -528,11 +460,5 @@ def id_searcher(df, chem_key, fdb = True, pubchem = True, use_prefix=True):
             df.at[idx, 'chem_id'] = row['inchikey']
         else:
             df.at[idx, 'chem_id'] = row['foodb_id'] + max_p_index
-    
-    # num_covered = len(df[df.chem_id.notnull()].chem_id.drop_duplicates())
-    # print('Total unique compound covereage', num_covered / total, '%')
-
-    # file = 'intermediate_save/' + file
-    # df.to_pickle(file)
     
     return df
