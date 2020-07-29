@@ -29,7 +29,8 @@ def download_chemidr_intermediate_data():
     
     gdown.download(url, output, quiet=False)
 
-    unzip_file(output)
+    with ZipFile(output, 'r') as zip: 
+        zip.extractall(path = os.path.join(cwd, "src/tools"))
 
 def make_copypath_and_copy(src, dst):
     dst = f'{dst}/{src}'
