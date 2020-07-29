@@ -1,49 +1,6 @@
-# import requests
-
-# def download_file_from_google_drive(id, destination):
-#     URL = "https://drive.google.com/uc?export=download"
-
-#     session = requests.Session()
-
-#     response = session.get(URL, params = { 'id' : id }, stream = True)
-#     token = get_confirm_token(response)
-
-#     if token:
-#         params = { 'id' : id, 'confirm' : token }
-#         response = session.get(URL, params = params, stream = True)
-
-#     save_response_content(response, destination)    
-
-# def get_confirm_token(response):
-#     for key, value in response.cookies.items():
-#         if key.startswith('download_warning'):
-#             return value
-
-#     return None
-
-# def save_response_content(response, destination):
-#     CHUNK_SIZE = 32768
-
-#     with open(destination, "wb") as f:
-#         for chunk in response.iter_content(CHUNK_SIZE):
-#             if chunk: # filter out keep-alive new chunks
-#                 f.write(chunk)
-
-# def download_data():
-#     file_id = '1qUSKg-KepGD50L9HLtdMQM6PIP9N2qwQ'
-#     destination = r"C:\Users\forresthooton\Documents\NetSci Research\Foodome Project\FoodMine\src\misc_save"
-#     download_file_from_google_drive(file_id, destination)
-
-# if __name__ == "__main__":
-#     file_id = '1qUSKg-KepGD50L9HLtdMQM6PIP9N2qwQ'
-#     destination = 'misc_save'
-#     download_file_from_google_drive(file_id, destination)
-
-# https://drive.google.com/drive/folders/1qUSKg-KepGD50L9HLtdMQM6PIP9N2qwQ?usp=sharing
-# https://drive.google.com/file/d/1Enc3FOXDb8R2gGGVnn73FOQEAYqePn9M/view?usp=sharing
-
+import os
+from shutil import copyfile
 import gdown
-# importing required modules 
 from zipfile import ZipFile
 
 def unzip_file(dirzip):
@@ -64,6 +21,23 @@ def download_intermediate_data():
 
     unzip_file(output)
 
+def make_copypath_and_copy(src, dst):
+    dst = f'{dst}/{src}'
+    src = f'data/{src}'
+
+    print(src,dst)
+    copyfile(src, dst)
+
+
+def copy_chemidr_files():
+    os.mkdir('src/tools/data')
+    files = ['compounds.csv', 'compound_synonymssql.csv', 'contentssql.csv', 'usda_raw_garlic.csv']
+
+    for f in files:
+        make_copypath_and_copy(f, 'src/tools/data')
+
+
 def download_all_data():
     download_core_data()
     download_intermediate_data()
+    copy_chemidr_files()
