@@ -3,20 +3,30 @@ from shutil import copyfile
 import gdown
 from zipfile import ZipFile
 
+cwd = os.getcwd()
+
 def unzip_file(dirzip):
     with ZipFile(dirzip, 'r') as zip: 
         zip.extractall() 
 
 def download_core_data():
     url = 'https://drive.google.com/uc?id=1urQmygS0vrbWN_4nU6R44q85XkPomYLD'
-    output = r"C:\Users\forresthooton\Documents\NetSci Research\Foodome Project\FoodMine\src\misc_save.zip"
+    output = os.path.join(cwd, "data.zip")
     gdown.download(url, output, quiet=False)
 
     unzip_file(output)
 
 def download_intermediate_data():
     url = 'https://drive.google.com/uc?id=1Enc3FOXDb8R2gGGVnn73FOQEAYqePn9M'
-    output = r"C:\Users\forresthooton\Documents\NetSci Research\Foodome Project\FoodMine\src\misc_save.zip"
+    output = os.path.join(cwd, "misc_save.zip")
+    gdown.download(url, output, quiet=False)
+
+    unzip_file(output)
+
+def download_chemidr_intermediate_data():
+    url = 'https://drive.google.com/uc?id=1vl5TSitI30bT5V_wkFfil8mqvQzvFhNn'
+    output = os.path.join(cwd, "src/tools/intermediate_data.zip")
+    
     gdown.download(url, output, quiet=False)
 
     unzip_file(output)
