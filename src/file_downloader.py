@@ -50,4 +50,5 @@ def copy_chemidr_files():
 def download_all_data():
     download_core_data()
     download_intermediate_data()
+    download_chemidr_intermediate_data()
     copy_chemidr_files()
