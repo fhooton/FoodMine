@@ -1,6 +1,11 @@
+![GitHub Logo](NetSci_Logo.png)
+
 # FoodMine
 
-FoodMine is a food database project from the Barabasi Lab of the Network Science Institute (Northeastern University). The objective of this project is to mine research litereature to uncover chemical contents in food. The code in this repository was used to generate the food pilots, plots, and other information in [FoodMine: Exploring Food Contents in Scientific Literature](https://www.biorxiv.org/content/10.1101/2019.12.17.880062v1) (Hooton, Menichetti, Barabási). Additionally, we have included the data from out initial experiments.
+FoodMine is a food database project from the [Barabasi Lab](https://www.barabasilab.com/) of the [Network Science Institute](https://www.networkscienceinstitute.org/). The objective of this project is to mine research litereature to uncover chemical contents in food. The code in this repository was used to generate the food pilots, plots, and other information in [FoodMine: Exploring Food Contents in Scientific Literature](https://www.biorxiv.org/content/10.1101/2019.12.17.880062v1) (Hooton, [Menichetti](https://www.barabasilab.com/people/giulia-menichetti), [Barabási](barabasilab.com/people/laszlo-barabasi)). Additionally, we have included the data from out initial experiments.
+
+> **FoodMine Abstract**
+> Thanks to the many chemical and nutritional components it carries, diet critically affects human health. However, the currently available comprehensive databases on food composition cover only a tiny fraction of the total number of chemicals present in our food, focusing on the nutritional components essential for our health. Indeed, thousands of other molecules, many of which have well documented health implications, remain untracked. To explore the body of knowledge available on food composition, we built FoodMine, an algorithm that uses natural language processing to identify papers from PubMed that potentially report on the chemical composition of garlic and cocoa. After extracting from each paper information on the reported quantities of chemicals, we find that the scientific literature carries extensive information on the detailed chemical components of food that is currently not integrated in databases. Finally, we use unsupervised machine learning to create chemical embeddings, finding that the chemicals identified by FoodMine tend to have direct health relevance, reflecting the scientific community’s focus on health-related chemicals in our food.
 
 Getting started using a conda env:
 
