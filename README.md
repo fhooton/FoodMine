@@ -1,4 +1,4 @@
-![alt text](https://github.com/fhooton/FoodMine/images/NetSci_Logo.png)
+![Logo](https://github.com/fhooton/FoodMine/blob/master/images/NetSci_Logo.png)
 
 # FoodMine
 
