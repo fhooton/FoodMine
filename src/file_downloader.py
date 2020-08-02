@@ -53,3 +53,7 @@ def download_all_data():
     download_intermediate_data()
     download_chemidr_intermediate_data()
     copy_chemidr_files()
+
+
+if __name__ == "__main__":
+    download_all_data()

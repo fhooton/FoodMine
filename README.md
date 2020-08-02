@@ -2,7 +2,7 @@
 
 # FoodMine
 
-FoodMine is a food database project from the [Barabasi Lab](https://www.barabasilab.com/) of the [Network Science Institute](https://www.networkscienceinstitute.org/). The objective of this project is to mine research litereature to uncover chemical contents in food. The code in this repository was used to generate the food pilots, plots, and other information in [FoodMine: Exploring Food Contents in Scientific Literature](https://www.biorxiv.org/content/10.1101/2019.12.17.880062v1) (Hooton, [Menichetti](https://www.barabasilab.com/people/giulia-menichetti), [Barabási](barabasilab.com/people/laszlo-barabasi)). Additionally, we have included the data from out initial experiments.
+FoodMine is a food database project from the [Barabasi Lab](https://www.barabasilab.com/) of the [Network Science Institute](https://www.networkscienceinstitute.org/). This project aims to expand the currently available information on the chemical contents of food using information mined from research literature. The code in this repository was used to generate the food pilots, plots, and other information in [FoodMine: Exploring Food Contents in Scientific Literature](https://www.biorxiv.org/content/10.1101/2019.12.17.880062v1) (Hooton, [Menichetti](https://www.barabasilab.com/people/giulia-menichetti), [Barabási](barabasilab.com/people/laszlo-barabasi)). Additionally, we have included the data from out initial experiments.
 
 > **FoodMine Abstract**
 > 
@@ -36,7 +36,7 @@ Run the [python notebooks](https://jupyter-notebook-beginner-guide.readthedocs.i
  - Paper_Screening.ipynb
  - Data_statistics.ipynb (this notebook is key to running other downstream files as it downloads relevant data hosted online)
  - Molecule_Embedding.ipynb
- - Paper_Citations.ipynb (this notebook is not runnable without a Microsoft Acedemic Graph API key)
+ - Paper_Citations.ipynb (this notebook is not runnable without a Microsoft Academic Graph API key)
  - Phenol_Explorer_Comparison.ipynb
 
 # Files
@@ -80,7 +80,7 @@ Folder that holds raw data from paper data collection.
 Select data files:
 
 * data/(garlic/cocoa)_data.csv
-Files that contains extracted information such as chemcials, PMID's, origional units, and sample metadata
+Files that contains extracted information such as chemicals, PMID's, original units, and sample metadata
 
 * FoodMine_Output/fm_(garlic/cocoa).pkl
 Files that contains the processed data that constitutes the FoodMine final data stores
@@ -88,4 +88,4 @@ Files that contains the processed data that constitutes the FoodMine final data 
 * FoodMine_Output/compound_names_(garlic/cocoa).pkl
 Files that contains processed compound names from literature and it's designated id in the FoodMine process
 
-**Note: some of the matching procedures leveraged undisclosed datasets under development for future projects. For more info contact Giulia Menichetti at g.menichetti@northeastern.edu.**
+**Note: some of the matching procedures leveraged undisclosed datasets under development for future projects. For more info contact Dr. Menichetti at menicgiulia@gmail.com.**
