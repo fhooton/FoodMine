@@ -16,7 +16,6 @@
 import pandas as pd
 import numpy as np
 import time
-# import urllib.request as request
 import requests
 from lxml import etree
 import json
@@ -56,7 +55,7 @@ def __greek_letter_converter__(chem, convert_letter = True):
 
 def __clean_term__(term, convert_letter = True, w_space = True, is_url=True):
     """
-        Prepares an input term to be quried in a url
+        Prepares an input term to be queried in a url
 
         Input
         ----------------------------------------------------------------
@@ -111,12 +110,10 @@ def __safe_urlopen__(url):
         return response.content
 
     elif response.status_code == 429: # Too many requests
-        # print('Retrying...')
         time.sleep(.5)
         return __safe_urlopen__(url)
 
     elif response.status_code == 503: # PUGREST.ServerBusy
-        # print('Retrying...')
         time.sleep(1)
         return __safe_urlopen__(url)
 
@@ -124,7 +121,7 @@ def __safe_urlopen__(url):
         return None
 
 
-def __exact_retrevial__(req):
+def __exact_retrieval__(req):
     """
         retrieves pubchem synonym information using exact string matches and extracts the 
         compound id and primary compound name
@@ -178,7 +175,7 @@ def __clean_compound_name__(s):
     # Remove cis/trans from string
     s = re.sub('[\s\-\(]cis[\s\-\)]|[\s\-\(]trans[\s\-\)]', '', s)
 
-    # Remove any single alpha charachters surrounded by whitespace or '-'
+    # Remove any single alpha characters surrounded by whitespace or '-'
     s = re.sub('[\s\-\(][a-z][\s\-\)]|^[a-z][\s\-]', '-', s)
 
     # Replace hyphen with space
@@ -208,7 +205,7 @@ def __complex_string_equivalence__(s1, s2):
 # https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/2244/synonyms/json
 def __compound_search__(req):
     """
-        Searchs PubChem database with search term (req) to retrieve information for in-exact matches
+        Searches PubChem database with search term (req) to retrieve information for in-exact matches
 
         Input
         ----------------------------------------------------------------
@@ -272,20 +269,19 @@ def get_compound_pubchem_info(chem):
         return np.nan, np.nan
         
     req = __clean_term__(chem, convert_letter=False)
-    compound_id, compound_name = __exact_retrevial__(req)
+    compound_id, compound_name = __exact_retrieval__(req)
     
     if not math.isnan(compound_id):
         return compound_id, compound_name
 
     req = __clean_term__(chem, convert_letter=False, w_space=False)
-    compound_id, compound_name = __exact_retrevial__(req)
+    compound_id, compound_name = __exact_retrieval__(req)
 
     if not math.isnan(compound_id):
         return compound_id, compound_name
 
     req = __clean_term__(chem, convert_letter=False)
     compound_id, compound_name = __compound_search__(req)
-            # except:
     
     if not math.isnan(compound_id):
         return compound_id, compound_name
@@ -455,7 +451,6 @@ def id_searcher(df, chem_key, fdb = True, pubchem = True, use_prefix=True):
     
     # If there is no pubchem_id, make chem_id the foodb_id + the maximum pubchem id
     for idx, row in df.iterrows():
-        # if not math.isnan(row['inchikey']):
         if isinstance(row['inchikey'], str):
             df.at[idx, 'chem_id'] = row['inchikey']
         else:

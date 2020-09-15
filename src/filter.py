@@ -144,7 +144,7 @@ class Filter():
 			else:
 				data_row['class'] = 1
 
-			# Add the existance of measurement methods as different features
+			# Add the existence of measurement methods as different features
 			for method in self.measurement_matchers.keys():
 				data_row[method] = measurement_detection[method]
 
@@ -180,7 +180,7 @@ class Filter():
 
 	def __get_pubmed_features__(self, text):
 		"""
-			Calculates count frequence features from PubMed entry abstract and mesh terms.
+			Calculates count frequency features from PubMed entry abstract and mesh terms.
 
 			Parameters
 			-----------------
@@ -215,7 +215,7 @@ class Filter():
 	# Determines if a word is present in paper abstract or mesh terms
 	def __detect_word_presence__(self, text, matcher):
 		"""
-			Calculates count frequence features from PubMed entry abstract and mesh terms.
+			Calculates count frequency features from PubMed entry abstract and mesh terms.
 
 			Parameters
 			-----------------
@@ -228,7 +228,7 @@ class Filter():
 			Returns
 			-----------------
 			presence of pattern : int
-				Returns 1 if there is any prsense of the matcher pattern, and 0 otherwise.
+				Returns 1 if there is any presence of the matcher pattern, and 0 otherwise.
 		"""
 
 		# Retrieves the matches from text
@@ -244,7 +244,7 @@ class Filter():
 
 	def __matches__(self, matcher, text):
 		"""
-			Calculates count frequence features from PubMed entry abstract and mesh terms.
+			Calculates count frequency features from PubMed entry abstract and mesh terms.
 
 			Parameters
 			-----------------

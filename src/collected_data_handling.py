@@ -38,7 +38,7 @@ def build_data_dict(df):
 
             f_chem_df = df[(df['food'] == food) & (df['chem_id'] == chem_id)]   # Filters DataFrame for rows with specific food-chemical combination
             
-            new_entry = __build_chem_subdict__(f_chem_df)  # Reformats and caluclates values from seperate resources as dict
+            new_entry = __build_chem_subdict__(f_chem_df)  # Reformats and calculates values from separate resources as dict
 
             chem_dict[new_entry['chemical']] = new_entry
         
@@ -46,7 +46,7 @@ def build_data_dict(df):
 
             f_chem_df = df[(df['food'] == food) & (df['chemical'] == chem)]   # Filters DataFrame for rows with specific food-chemical combination
             
-            new_entry = __build_chem_subdict__(f_chem_df)  # Reformats and caluclates values from seperate resources as dict
+            new_entry = __build_chem_subdict__(f_chem_df)  # Reformats and calculates values from separate resources as dict
             
             chem_dict[new_entry['chemical']] = new_entry
 
@@ -89,7 +89,7 @@ def dict_to_df(data_dict):
 
 def __extract_digits__(string):
     """
-        Extracts digits from beginning of string up until first non-diget character
+        Extracts digits from beginning of string up until first non-digit character
 
         Parameters
         -----------------
@@ -113,7 +113,7 @@ def __extract_digits__(string):
 
 def __splice_unit__(unit):
     """
-        Recieves a unit in string form, even containing a number, and returns scales and units.
+        Receives a unit in string form, even containing a number, and returns scales and units.
 
         Parameters
         -----------------
@@ -151,7 +151,7 @@ def __converter__(unit, target):
         Parameters
         -----------------
         unit : string
-            Origional unit of input
+            Original unit of input
 
         target : string
             Target unit in conversion
@@ -185,7 +185,7 @@ def __unit_handler__(value, unit, target_unit):
             Value of measurement with associated unit
 
         unit : string
-            Origional unit of input
+            Original unit of input
 
         target_unit : string
             Target unit for conversion
@@ -224,7 +224,7 @@ def __unit_handler__(value, unit, target_unit):
     
     if unit.count('/') > 0:
 
-        # Check if the first charechter of digit is string, assumed conversion value if it is
+        # Check if the first character of digit is string, assumed conversion value if it is
         num_scale, num_unit = __splice_unit__(unit.split('/')[0])
         denom_scale, denom_unit = __splice_unit__(unit.split('/')[1])
 
@@ -284,7 +284,7 @@ def __quant_handler__(df):
             
             conversion = __unit_handler__(row['amount'], row['units'], target_unit)	# Sets the units for the whole output
             
-            # If there is an error or issiue in __unit_handler__, will return some sort of string
+            # If there is an error or issue in __unit_handler__, will return some sort of string
             if type(conversion) is not str:
             
                 # Keeps track of the global min and max for a chemical

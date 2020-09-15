@@ -1,3 +1,4 @@
+# Author: Forrest Hooton
 
 import numpy as np
 import math
@@ -108,14 +109,6 @@ def cids2names(cids, as_dict=False):
 		url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/{','.join(ids)}/synonyms/JSON"
 
 		r = __safe_urlopen__(url)
-
-		# if r is None:
-		# 	new_names = batch_error_handler(ids, prop, as_dict=as_dict)
-
-		# 	if as_dict: names.update(new_names)
-		# 	else: names += new_names
-
-		# 	continue
 
 		# option to return InChIKey's as list or as dict (dict has certainty in case some cids aren't
 		# retrieved, list preserves order)
@@ -236,12 +229,10 @@ def __safe_urlopen__(url):
         return response.content
 
     elif response.status_code == 429: # Too many requests
-        # print('Retrying...')
         time.sleep(.5)
         return __safe_urlopen__(url)
 
     elif response.status_code == 503: # PUGREST.ServerBusy
-        # print('Retrying...')
         time.sleep(1)
         return __safe_urlopen__(url)
 
@@ -327,32 +318,6 @@ def mesh2pid(mesh):
 	else:
 		return {mesh : {'mesh' : mesh, 'sid' : np.nan, 'cid' : np.nan}}
 
-	# url = f'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pccompound&term={mesh}&retmode=json'
-
-	# r = __safe_urlopen__(url)
-
-	# if r is not None:
-	# 	j = json.reads(r)
-
-	# 	if j['esearchresult']['count'] != 0:
-
-	# 		sid = j['esearchresult']['idlist'][0] # get first sid result
-
-	# 		url = f'https://pubchem.ncbi.nlm.nih.gov/rest/pug/substance/sid/{sid}/xml'
-
-	# 		xml = __safe_urlopen__(url)
-
-	# 		root = etree.from_string(xml)
-
-	# 		cids = root.findall(".//{http://www.ncbi.nlm.nih.gov}PC-CompoundType_id_cid")
-
-	# 		if len(cids) > 0:
-	# 			cid = cids[0].xpath('./text()')[0]
-	# 		else:
-	# 			cid = np.nan
-
-	# 		return {'mesh' : mesh, 'sid' : sid, 'cid' : cid}
-
 
 def cid2tax(cid, taxonomy='ChEBI'):
 	url = f'https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/{cid}/classification/JSON'
@@ -363,7 +328,7 @@ def cid2tax(cid, taxonomy='ChEBI'):
 
 	all_taxonomies = json.loads(r)['Hierarchies']['Hierarchy']
 
-	# I think should only have one occurance of taxonomy source name
+	# I think should only have one occurrence of taxonomy source name
 	raw_tax = [all_taxonomies[t] for t in range(len(all_taxonomies)) if all_taxonomies[t]['SourceName'] == taxonomy]
 
 	if len(raw_tax) == 0: return np.nan

@@ -45,7 +45,7 @@ Run the [python notebooks](https://jupyter-notebook-beginner-guide.readthedocs.i
 Notebook to search through the PubMed database and filter out search results.
 
 #### Data_Statistics.ipynb
-Notebook to compare clean raw data, compare databases, and visualize comparisons. This executes the majority of the analysis discussed in FoodMine. It begins by assigning keys to compounds, then calculates comparisons between databases, and finally generates paper visualizations.
+Notebook to compare clean raw data, compare databases, and visualize comparisons. This notebook executes the majority of the analysis discussed in FoodMine. It begins by assigning keys to compounds, then calculates comparisons between databases, and finally generates paper visualizations.
 
 #### Molecule_Embedding.ipynb
 Notebook to retrieve molecule smiles, embed compounds, and visualize embeddings.

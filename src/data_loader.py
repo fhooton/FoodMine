@@ -155,14 +155,14 @@ def partition_raw_data(food_data, food_scoring):
     # Remove all rows where the units are %'s
     food_data_q = food_data[food_data['is_quant'] == 1].reset_index(drop=True)
 
-    # Have a seperate dataframe for all chemicals that we would put in the category of 'detected but not quantified'
+    # Have a separate dataframe for all chemicals that we would put in the category of 'detected but not quantified'
     food_data_dnq = food_data[food_data['is_quant'] == 0].reset_index(drop=True)
 
      # The quantified dataframe for values that are both quantified and unquantified
     unq_chems = list(set( food_data_dnq['chemical'].tolist() ))
     food_data_both = food_data_q.iloc[[idx for idx, row in food_data_q.fillna('placeholder').iterrows() if row['chemical'] in unq_chems]]
 
-    # Remove occurances of overlaping chemicals from the unquantified garlic data
+    # Remove occurrences of overlaping chemicals from the unquantified garlic data
     q_chems = list(set( food_data_q['chemical'].tolist() ))
     food_data_dnq = food_data_dnq.iloc[[idx for idx, row in food_data_dnq.fillna('placeholder').iterrows() if row['chemical'] not in q_chems]]
     
@@ -177,7 +177,7 @@ def build_food_mine(food_data, food_data_q, food_data_dnq):
 
     unquant_food_mine = cdh.build_data_dict(food_data_dnq)
     
-    # Need to recompare quantified chems and unquantified chems with synonym key to do one last removal
+    # Need to re-compare quantified chems and unquantified chems with synonym key to do one last removal
     q_chems = list(set( quant_food_mine['chem_id'].dropna().tolist() ))
     unquant_food_mine = unquant_food_mine[~unquant_food_mine.chem_id.isin(q_chems)].reset_index()
     
@@ -226,10 +226,10 @@ def load_foodb_data(food, load):
     # Creates a list of the unique chemicals in garlic from foodb
     foodb_food_lower = list(set( foodb_food.chem_id.tolist() ))
 
-    # Creates a seperate dataframe that holds chemicals for garlic in foodb with a real quantification
+    # Creates a separate dataframe that holds chemicals for garlic in foodb with a real quantification
     quant_foodb_food = foodb_food[foodb_food.standard_content.notnull()][['chem_id', 'chem_id_f', 'orig_source_id','name', 'standard_content']].drop_duplicates()
 
-    # Creates a seperate dataframe that holds chemicals for garlic in foodb without a real quantification
+    # Creates a separate dataframe that holds chemicals for garlic in foodb without a real quantification
     unquant_foodb_food = foodb_food[foodb_food.standard_content.isnull()][['chem_id', 'chem_id_f', 'orig_source_id','name', 'standard_content']].reset_index()
     
     q_ids = list(set( quant_foodb_food.chem_id.tolist() ))
@@ -265,7 +265,7 @@ def load_usda_data(food, load):
         usda = usda[usda.NDB_No.isin(NDB_id)][['NDB_No','food_name', 'Nutr_No_new', 'nut_desc', 'Nutr_Val', 'unit']]
         usda['num_measures'] = 1
 
-        # Average chemicals that appear in multiple USDA food catagoriess
+        # Average chemicals that appear in multiple USDA food categories
         for nutr in usda.Nutr_No_new.drop_duplicates().tolist():
             temp = usda[usda.Nutr_No_new == nutr]
             if len(temp) > 1:

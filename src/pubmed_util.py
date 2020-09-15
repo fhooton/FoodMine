@@ -14,7 +14,7 @@ from .filter import Filter
 
 def filter_results(search_terms):
 	"""
-		Recieves search terms to classify usefulness of pubmed documents from search results.
+		Receives search terms to classify usefulness of pubmed documents from search results.
 
 		Parameters
 		-----------------
@@ -53,7 +53,7 @@ def filter_results(search_terms):
 
 def search_pubmed(search_terms):
 	"""
-		Recieves search terms to classify usefulness of pubmed documents from search results.
+		Receives search terms to classify usefulness of pubmed documents from search results.
 
 		Parameters
 		-----------------
@@ -99,7 +99,7 @@ def retrieve_doc_info(ids):
 			PubMed ids with metadata attached
 	"""
 
-	# Can't query too much in a single query, so divides larger id lists into seperate queries
+	# Can't query too much in a single query, so divides larger id lists into separate queries
 	num_loops = int(math.ceil(len(ids) / 100))
 
 	# Have to split requests larger than 100 documents to keep it within url size
@@ -260,7 +260,7 @@ def construct_url(url_input, query_type, num_results = 1000000):
 		# Replace spaces with something that works with as a url
 		adjusted_terms = [s.replace(" ", "%20") for s in url_input]
 
-		# Join seperate search queries
+		# Join separate search queries
 		term_url = '%20AND%20'.join(adjusted_terms)
 
 		# Cap the number of results
@@ -301,7 +301,7 @@ def construct_url(url_input, query_type, num_results = 1000000):
 # Divides doc ids for larger paper queries in retrieve_doc_info()
 def divide_list(ids, num_divisions):
 	"""
-		Splits a single list of ids into num_divisions numbers of seperate lists
+		Splits a single list of ids into num_divisions numbers of separate lists
 
 		Parameters
 		-----------------
