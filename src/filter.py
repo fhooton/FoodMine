@@ -109,9 +109,6 @@ class Filter():
 		# Builds features for each row of data
 		for idx, row in tqdm(self.input_data.iterrows()):
 
-			# if not idx % 200:
-			# 	print('# rows:', idx, round(time() - start) / 60, "min")
-
 			if row['abstract'] == None:
 				abstract = ''
 			else:

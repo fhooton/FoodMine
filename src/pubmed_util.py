@@ -349,12 +349,10 @@ def __safe_urlopen__(url):
         return response.content
 
     elif response.status_code == 429: # Too many requests
-        # print('Retrying...')
         time.sleep(.5)
         return __safe_urlopen__(url)
 
     elif response.status_code == 502: # Bad Gateway
-        # print('Retrying...')
         time.sleep(1)
         return __safe_urlopen__(url)
 
