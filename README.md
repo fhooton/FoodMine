@@ -12,7 +12,7 @@ FoodMine is a food database project from the [Barabasi Lab](https://www.barabasi
 > 
 > **Figure 2:** Number of Unique Compounds Recovered by FoodMine, USDA, and FooDB. The plots show the number of unique compounds reported by USDA, FooDB, and FoodMine. The columns display 1) the total number of unique quantified compounds in each database, 2) the total number of unique unquantified compounds in each database, and 3) the number of quantified compounds retrieved by FoodMine and never reported before in USDA or FooDB.
 
-> ![F5](https://github.com/fhooton/FoodMine/blob/master/images/cocoa_TSNE_replot.png)
+> ![F5](https://github.com/fhooton/FoodMine/blob/master/images/Figure5.png)
 >
 > **Figure 5:** TSNE Dimensionality Reduction of Chemical Embeddings with Health Associations. TSNE plots of Mol2Vec chemical embeddings for garlic (A, B, and C) and cocoa (D, E, and F). The colors of each data point encode the number of health implications associated with the compounds based on the CTD database. Dark gray represents chemicals with 0 health associations. We show chemicals catalogued by each studied database for FoodMine (A & D), USDA (B & E), and FooDB (C & F). Markers are filled if the database contains the chemical, and empty if it does not.
 
