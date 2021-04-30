@@ -9,7 +9,7 @@ fuzzywuzzy
 unit_converter
 lxml
 gdown
-spacy
+spacy==2.0.11
 notebook
 statsmodels
 colorcet
