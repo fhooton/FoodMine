@@ -4,9 +4,9 @@ import os
 import time
 
 import config
-import tools.chemidr.labeler as lbr
-import tools.chemidr.id_map as id_map
-import collected_data_handling as cdh
+import src.tools.chemidr.labeler as lbr
+import src.tools.chemidr.id_map as id_map
+import src.collected_data_handling as cdh
 
 report = False
 
