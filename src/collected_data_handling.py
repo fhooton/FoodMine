@@ -56,7 +56,6 @@ def build_data_dict(df):
 
     return data_df
 
-
 def dict_to_df(data_dict):
     """
         Converts a constructed data dictionary to a pandas dataframe

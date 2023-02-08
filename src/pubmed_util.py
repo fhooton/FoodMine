@@ -11,6 +11,7 @@ import time
 # Imports from directory
 from .filter import Filter
 
+
 def filter_results(search_terms):
     """
         Receives search terms to classify usefulness of pubmed documents from search results.
@@ -339,7 +340,7 @@ def __safe_urlopen__(url):
         response.content : str (maybe bytes) or None
             Returns the response of a url query if it exists, else None
     """
-#Heba ======================================>
+    # Heba ======================================>
     print(url)
 
     try:
